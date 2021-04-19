@@ -1,0 +1,70 @@
+#!/usr/bin/python3
+'''
+    Prints the differences between our module's knowledge (uni_plane_block_names.blocks)
+    and a given unicode.org Blocks.txt
+
+    Made to ease the manual work of updating that module.
+'''
+import sys
+import uni_plane_block_names
+
+
+
+def check_blocks(blocks):
+    # check that blocks...    (need only be enabled after editing the data, to check it)
+    # ...are covering and contiguous
+    for bi in range( 1, len(blocks)):                    
+        if blocks[bi-1][1]+1 != blocks[bi][0]:
+            # i.e. start  is  end of previous+1   If not I've made a mistake in my manual curation
+            raise ValueError( '0x%04x+1 is %04x, not 0x%04x as is the bext block  (%s+1 != %s)'%(blocks[bi-1][1], blocks[bi-1][1]+1, blocks[bi][0], blocks[bi-1][1],blocks[bi][0]) )
+        
+    # ...'s ranges make sense
+    for bi in range( len(blocks)):
+        if blocks[bi][0] >  blocks[bi][1]:
+            raise ValueError( '0x%04x > %04x'%(blocks[bi][0],blocks[bi][1]) )
+
+
+print( "== checking some consistency details =="%fn ) 
+        
+check_blocks( uni_plane_block_names.blocks )
+
+
+for fn in sys.argv[1:]:
+    print( "== %s =="%fn ) 
+    f = open(fn)
+    lines = f.readlines()
+    f.close()
+    fd = {}
+    for line in lines:
+        line = line.strip()
+        if line=='' or line.startswith('#'):
+            pass
+            #print("SKIP %r"%line)
+        else:
+            #print("USE  %r"%line)
+            f_rng, f_name = line.split('; ', 1)
+            f_st, f_en = f_rng.split('..',1)
+            f_st = int(f_st,16)
+            f_en = int(f_en,16)
+            #print('%08x..%08x  %r'%( st,en,name ) )
+
+            found = False
+            for i in range(len(uni_plane_block_names.blocks)):
+                b_st,b_en, b_name, _ = uni_plane_block_names.blocks[i]
+
+                # these will be repeated. TODO: separate
+                if i>0 and b_st != uni_plane_block_names.blocks[i-1][1]+1:
+                    print( "Current block's start (%06x) isn't previous block's end %06x+1(=0%4x)"%(b_st, uni_plane_block_names.blocks[i-1][1], uni_plane_block_names.blocks[i-1][1]+1) )
+                
+                if f_st == b_st :
+                    found = True
+                    #print( "FOUND %s"%name )
+
+                    if f_name != b_name:
+                        print( "different name for st=%06x(..en=%06x): f:%r != b:%r"%(f_st, f_en, f_name, b_name) )
+                    
+                    if f_en != b_en:
+                        print( "different sized range for %r: range end  f:%06x != b:%06x (f:size is %s, b:size is %s)"%(f_name, f_en, b_en, f_en-f_st+1, b_en-b_st+1) )
+
+            if not found:
+                print( "range st=%06x(..en=%06x) (%s) in file not found in module"%(f_st, f_en, f_name))
