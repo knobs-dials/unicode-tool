@@ -24,7 +24,7 @@ def check_blocks(blocks):
             raise ValueError( '0x%04x > %04x'%(blocks[bi][0],blocks[bi][1]) )
 
 
-print( "== checking some consistency details =="%fn ) 
+print( "== checking some block consistency details ==" ) 
         
 check_blocks( uni_plane_block_names.blocks )
 
