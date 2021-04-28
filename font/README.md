@@ -4,16 +4,16 @@
 These scripts support the glyph-example image montages, and "fonts supporting this character include..." feature
 
 To that end:
-* font-codepoint-coverage - figures out the range of characters within each font
+* **font-codepoint-coverage** - figures out the range of characters within each font
   * using fontforge
 
-* font-render-codepoints - renders all codepoints to individual png files -- for a single font. You probably want to 
+* **font-render-codepoints** - renders all codepoints to individual png files -- for a single font. You probably want to 
   * using fontforge
 
-* font-render-codepoints.sh
+* **font-render-codepoints.sh**
   * just runs the python script above (reasons explained below)
 
-* font-codepoint-montage
+* **font-codepoint-montage**
   * assembles a random selection of images for each codepoint into a characters into combined image
   * using imagemagick
 
