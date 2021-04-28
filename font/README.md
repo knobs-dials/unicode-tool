@@ -7,25 +7,15 @@ To that end:
 * font-codepoint-coverage - figures out the range of characters within each font
   * using fontforge
 
-* font-render-codepoints - renders all codepoints to individual png files
+* font-render-codepoints - renders all codepoints to individual png files -- for a single font. You probably want to 
   * using fontforge
+
+* font-render-codepoints.sh
+  * just runs the python script above (reasons explained below)
 
 * font-codepoint-montage
   * assembles a random selection of images for each codepoint into a characters into combined image
   * using imagemagick
-
-
-
-## Dependencies
-
-fontforge
-* standalone font editor, but we use it for its scripting interface
-* see https://fontforge.org/
-
-
-On ubuntu this is covered by
-
-        apt install fontforge-nox python3-fontforge imagemagick
 
 
 
@@ -53,6 +43,21 @@ Notes:
   * font-render-codepoint.sh just calls font-render-codepoints.py. This so that xargs doesn't stop when we crash on an individual font. Which id does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
 
 * The montage selects up to six images, randomly for the available ones.
+
+
+
+
+## Dependencies
+
+fontforge
+* standalone font editor, but we use it for its scripting interface
+* see https://fontforge.org/
+
+
+On ubuntu this is covered by
+
+        apt install fontforge-nox python3-fontforge imagemagick
+
 
 
 
