@@ -1,0 +1,54 @@
+#!/usr/bin/python3
+
+import glob,subprocess,os,random,re
+
+if not os.path.exists('montaged'): # implicitly under working directory
+    os.mkdir('montaged')
+
+tests=[]
+
+print( "Finding codepoints we have images for..." )
+l = os.listdir('render-output')
+for e in l:
+    m = re.match('[0-9a-fA-F]{4,8}_',e)
+    if m:
+        i = int(m.group()[:-1], 16)   #I can't recall why I was making it integers, bug okay...
+        tests.append( i )
+
+todo = sorted(set(tests))
+print( "Found images for %d different codepoints."%len(todo) )
+
+
+print( "Starting to make montages" )
+for codepoint in todo:
+    #print codepoint,
+    outfn = 'montaged/%04x.png'%codepoint
+  
+    if os.path.exists(outfn):
+        print( 'SKIP creating %r, already have output image'%(outfn,) )
+        continue
+  
+    #print 'looking for %06x'%i,
+    l = glob.glob('render-output/%06x_*'%codepoint)
+
+    lenl = len(l)
+    if lenl==0:
+        print( "found none, skip  - BUG" )
+        continue
+
+    else:
+      # random selection of six
+      random.shuffle(l)
+      l=l[:6]
+
+      # CONSIDER: process pool  
+      cmd = ['montage']
+      cmd.extend(l)
+      cmd.extend(['-transparent-color', "white"])   
+      cmd.extend(['-background',  "grey94"]) 
+      cmd.extend(['-geometry','+7+7']) 
+      cmd.extend(['-gravity','South']) 
+      cmd.append(outfn)
+      print( cmd )
+      subprocess.call(cmd)
+
