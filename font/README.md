@@ -1,7 +1,7 @@
 
 ## Purpose
 
-These scripts support the example images, and "fonts supporting this character include..." feature
+These scripts support the glyph-example image montages, and "fonts supporting this character include..." feature
 
 To that end:
 * font-codepoint-coverage - figures out the range of characters within each font
@@ -26,6 +26,7 @@ To generate separate PNG images for each glyph, for many TTF/OTF files:
 
         find . -iname '*.[ot]tf' | xargs -P 6 -n 1 ./font-render-all.sh
 
+Keep in mind this takes a long time, and if you run it on a bunch of fonts, may create hundreds of thousands of images.
 After that's done for *all* the fonts you want, you can create montages for each codepoint based on the currently present images via
 
         font-codepoint-montage
@@ -62,6 +63,8 @@ On ubuntu this is covered by
 
 
 ## TODO
+
+* finish font-codepoint-coverage to actually insert into the database
 
 * We need code to use only one font per family
 
