@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+
+# For each font, store the ranges of codepoints they have in the database.
+# 
+# My previous implementation using ttfquery was faster, but when we use this for one-time generation, we don't really care.
+# 
+# TODO: think about storage form that makes for the easiest querying
+# We want to query things like
+#   - 'fonts that have this character'
+#   - 'fonts that have this block'
+# and maybe
+#   - summarizing most helpful fonts
+#   - answering a minimal covering set of fonts for given ranges
+#   - Unique converage (e.g. for dead languages)?
+#
+#
+# Right now I'm going for list of contiguous ranges, fetch that and do it in code
+#   font_names            (fontnum serial, fontname text)
+#   font_codepoint_ranges (fontnum integer, start integer, end integer)
+#  
+#  
+# CONSIDER:
+#  - Note that this is still slightly imprecise because there are often fewer printable than valid codepoints
+#    ...so see if the metadata can help us a little better.
+
+import sys
+import os
+import fontforge
+
+def ranges(i):
+    import itertools
+    for a, b in itertools.groupby(enumerate(i), lambda pair: pair[1] - pair[0]):
+        b = list(b)
+        yield b[0][1], b[-1][1]
+        
+
+for fontpath in sys.argv[1:]:
+
+    font = fontforge.open( fontpath )
+
+    print (" === Handling %r (%r) === "%(fontpath, font.familyname) )
+
+    codepoints = [gl.unicode  for gl in font.glyphs()  if gl.unicode!=-1]
+    # TODO: remove unallocated an private use according to blocks
+    #print( codepoints )
+    
+    codepoint_ranges = list(  ranges( sorted( codepoints  ) )  )
+    #print( codepoint_ranges )
+    
+    for st, en in codepoint_ranges:
+        print( 'U+%X..%X'%(st, en), end='  ')    
+    print() 
+
+    # TODO: put into database
+
+

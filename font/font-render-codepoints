@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+import glob,sys,os,gc
+
+args = sys.argv[1:]
+
+if len(args)!=1:
+    print( "specify a font file" )
+    sys.exit(-1)
+
+import fontforge
+font = fontforge.open(args[0])
+
+fontbasename = os.path.basename( args[0]).rsplit('.',1)[0]  # ...why am I not using the name fontforge resports? (better uniqueness maybe?)
+
+if not os.path.exists('render-output'): # implicitly under working directory
+    os.mkdir('render-output')
+
+for glyph in font.glyphs(): # iterate through the present glyphs
+    cpi = glyph.unicode #codepoint
+    if cpi!=-1:
+        cphex = '%06x'%glyph.unicode
+
+        efn = os.path.join('render-output','%s_%s.png'%(cphex,fontbasename)) # hexcodepoint_fontfilename.png
+        #print efn
+        if not os.path.exists(efn):
+             print( 'export %s'%efn )
+             glyph.export(efn)
