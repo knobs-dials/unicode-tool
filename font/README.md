@@ -47,18 +47,22 @@ Notes:
 
 
 
-
 ## Dependencies
 
 fontforge
-* standalone font editor, but we use it for its scripting interface
+* standalone font editor (GUI), but the conveersion uses it for its scripting interface
 * see https://fontforge.org/
+
+fontforge python API
+* the glyph generation and codepoint coverage uses this for all the heavy lifting
+
+imagemagick
+* creates montage
 
 
 On ubuntu this is covered by
 
         apt install fontforge-nox python3-fontforge imagemagick
-
 
 
 
