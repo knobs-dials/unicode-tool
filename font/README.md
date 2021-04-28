@@ -38,10 +38,10 @@ To generate separate PNG images for each glyph, for many TTF/OTF files:
 
 After that's done for *all* the fonts you want, you can create montages for each codepoint based on the currently present images via
 
-        codepoint_montage
+        font-codepoint-montage
 
  
-The montaged PNGs can be compressed further; look to things like optipng, pngcrush, and such. (I got compression to ~63%), e.g.
+Note that the montaged PNGs can be compressed further. Look to things like optipng, pngcrush, and such. (I got compression to ~63%), e.g.
 
         cd montaged/
         mkdir crushed
@@ -56,10 +56,10 @@ Notes:
 
 
 
-
 ## TODO
 
 * We need code to use only one font per family
 
 * there are some images that have a lot of white around them for weird-boundary reasons. See if we can do some smart cropping, and remove them if they're empty. (rewrite the montage thing in PIL, maybe?)
 
+* clean up these scripts, they're look like one-time scripts from ten years ago because they are
