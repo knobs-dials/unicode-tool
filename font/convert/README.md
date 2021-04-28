@@ -1,4 +1,4 @@
-These are *veery basic basic) written in fontforge's own scripting language.
+These are (very basic) scripts written in fontforge's own scripting language.
 
 
 As mentioned in the files themselves, you can run these like
