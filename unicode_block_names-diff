@@ -6,7 +6,7 @@
     Made to ease the manual work of updating that module.
 '''
 import sys
-import uni_plane_block_names
+import unicode_block_names
 
 
 
@@ -26,7 +26,7 @@ def check_blocks(blocks):
 
 print( "== checking some block consistency details ==" ) 
         
-check_blocks( uni_plane_block_names.blocks )
+check_blocks( unicode_block_names.blocks )
 
 
 for fn in sys.argv[1:]:
@@ -49,12 +49,12 @@ for fn in sys.argv[1:]:
             #print('%08x..%08x  %r'%( st,en,name ) )
 
             found = False
-            for i in range(len(uni_plane_block_names.blocks)):
-                b_st,b_en, b_name, _ = uni_plane_block_names.blocks[i]
+            for i in range(len(unicode_block_names.blocks)):
+                b_st,b_en, b_name, _ = unicode_block_names.blocks[i]
 
                 # these will be repeated. TODO: separate
-                if i>0 and b_st != uni_plane_block_names.blocks[i-1][1]+1:
-                    print( "Current block's start (%06x) isn't previous block's end %06x+1(=0%4x)"%(b_st, uni_plane_block_names.blocks[i-1][1], uni_plane_block_names.blocks[i-1][1]+1) )
+                if i>0 and b_st != unicode_block_names.blocks[i-1][1]+1:
+                    print( "Current block's start (%06x) isn't previous block's end %06x+1(=0%4x)"%(b_st, unicode_block_names.blocks[i-1][1], unicode_block_names.blocks[i-1][1]+1) )
                 
                 if f_st == b_st :
                     found = True
