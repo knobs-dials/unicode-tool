@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 '''
-    Prints the differences between our module's knowledge (uni_plane_block_names.blocks)
+    Prints the differences between our module's knowledge (unicode_block_names.blocks)
     and a given unicode.org Blocks.txt
+
+    Will import that module from the same directory, so it needs one argument, the path to a Blocks.txt
 
     Made to ease the manual work of updating that module.
 '''
@@ -9,8 +11,9 @@ import sys
 import unicode_block_names
 
 
-
 def check_blocks(blocks):
+    # some data sanity checks (unrelated to differences)
+    
     # check that blocks...    (need only be enabled after editing the data, to check it)
     # ...are covering and contiguous
     for bi in range( 1, len(blocks)):                    

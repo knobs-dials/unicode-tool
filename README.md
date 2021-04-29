@@ -14,7 +14,7 @@ A slightly augmented version of Blocks.txt
 
 Primarily to give a little visual feedback of what sort of block it is (e.g. coloring small and dead languages differently)
 
-There is also a `unicode_block_names-diff` script that showing the difference between this data and a given Blocks.txt, meant to ease updating to newer unicode info.
+There is also a `unicode_block_names-diff` script that shows the difference between this data and a given Blocks.txt, meant to ease updating to newer unicode info.
 
 
 ### unicode_tex.py
