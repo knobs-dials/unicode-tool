@@ -39,7 +39,7 @@ for codepoint in todo:
     else:
       # random selection of six
       random.shuffle(l)
-      l=l[:6]
+      l=l[:10]
 
       # CONSIDER: process pool  
       cmd = ['montage']
