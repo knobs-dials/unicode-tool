@@ -38,6 +38,7 @@ Notes:
 
 * The montage selects up to six images, randomly for the available ones.
 
+* the images in this repository are purely there as examples of how it will look
 
 
 ## Dependencies
