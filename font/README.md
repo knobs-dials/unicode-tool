@@ -25,11 +25,11 @@ After that's done for *all* the fonts you want, you can create montages for each
         font-codepoint-montage
 
  
-Note that the montaged PNGs can be compressed further. Look to things like optipng, pngcrush, and such. (I got compression to ~63%), e.g.
+Note that the montaged PNGs can be compressed further. Look to things like optipng, pngcrush, and such. (I got compression to approx 60%), e.g.
 
         cd montaged/
         mkdir crushed
-        find . -maxdepth 1 | xargs -n 100 -P 4 pngcrush -d crushed
+        find . -maxdepth 1 | xargs -n 100 -P 6 pngcrush -d crushed
 
 
 Notes:
