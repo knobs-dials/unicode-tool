@@ -43,12 +43,13 @@ for codepoint in todo:
 
       # CONSIDER: process pool  
       cmd = ['montage']
-      cmd.extend(l)
-      cmd.extend(['-transparent-color', "white"])   
-      cmd.extend(['-background',  "grey94"]) 
-      cmd.extend(['-geometry','+7+7']) 
-      cmd.extend(['-gravity','South']) 
-      cmd.append(outfn)
+      cmd.extend( l )
+      cmd.extend( ['-trim'] ) # some characters have weird bounds so have a lot of white around them. This removes all. Ideally we introduce a little border again, but I think that requires a separate mogrify.
+      cmd.extend( ['-transparent-color', "white"] )
+      cmd.extend( ['-background',  "grey94"] )
+      cmd.extend( ['-geometry','+7+7'] )
+      cmd.extend( ['-gravity','South'] )
+      cmd.append( outfn )
       print( cmd )
       subprocess.call(cmd)
 
