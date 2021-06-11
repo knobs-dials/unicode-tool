@@ -15,7 +15,7 @@ To that end:
 
 ## How to use the font rendering
 
-To generate separate PNG images for each glyph, for many TTF/OTF files:
+To generate separate PNG images for each glyph, for many TTF/OTF files (and some parallelism):
 
         find . -iname '*.[ot]tf' | xargs -P 6 -n 1 ./font-render-all.sh
 
