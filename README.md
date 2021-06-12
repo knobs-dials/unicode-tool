@@ -10,11 +10,9 @@ Trying to force myself to update, rewrite, clean up and release the code and dat
 
 ### unicode_block_names.py
 
-A slightly augmented version of Blocks.txt
+A slightly augmented version of the data in unicode's Blocks.txt, primarily to give a little visual feedback of what sort of block it is (e.g. coloring small and dead languages differently)
 
-Primarily to give a little visual feedback of what sort of block it is (e.g. coloring small and dead languages differently)
-
-There is also a `unicode_block_names-diff` script that shows the difference between this data and a given Blocks.txt, meant to ease updating to newer unicode info.
+There is a `unicode_block_names-diff` script that shows the difference between this data and a given Blocks.txt, meant to ease updating to newer unicode info.
 
 
 ### unicode_tex.py
