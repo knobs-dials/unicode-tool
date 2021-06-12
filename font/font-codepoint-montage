@@ -44,6 +44,7 @@ for codepoint in todo:
       # CONSIDER: process pool  
       cmd = ['montage']
       cmd.extend(l)
+      cmd.extend(['-trim'])
       cmd.extend(['-transparent-color', "white"])   
       cmd.extend(['-background',  "grey94"]) 
       cmd.extend(['-geometry','+7+7']) 
