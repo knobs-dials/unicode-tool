@@ -65,6 +65,6 @@ On ubuntu this is covered by
 
 * We need code to use only one font per family
 
-* there are some images that have a lot of white around them for weird-boundary reasons. See if we can do some smart cropping, and remove them if they're empty. (rewrite the montage thing in PIL, maybe?)
-
 * clean up these scripts, they're look like one-time scripts from ten years ago because they are
+
+* there are some images that have a lot of white around them for weird-bounding-box reasons. I think this is now -trim'd away during montage, but check this works as intended.
