@@ -3,9 +3,9 @@
     Prints the differences between our module's knowledge (unicode_block_names.blocks)
     and a given unicode.org Blocks.txt
 
-    Will import that module from the same directory, so it needs one argument, the path to a Blocks.txt
-
     Made to ease the manual work of updating that module.
+
+    Will import that module from the same directory, so it needs one argument, the path to a Blocks.txt
 '''
 import sys
 import unicode_block_names
