@@ -33,6 +33,10 @@ I should check this for completeness.
 Mapping from version string to release date, meant to support "codepoint available since approx" feature.
 
 
+### helpers_codepage.py
+
+codepages 437, 850, and 1252,  supporting the Alt code feature  
+
 
 
 
