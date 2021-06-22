@@ -24,9 +24,13 @@ Can probably be improved upon.
 
 ### named_entities.py
 
-A mapping from codepoints to HTML/XML entity names
+A mapping from codepoints to HTML/XML entity names.
+I should check this for completeness.
 
-This one's a few years out of data and needs work
+
+### unicode_versions.py
+
+Mapping from version string to release date, meant to support "codepoint available since approx" feature.
 
 
 
