@@ -2,7 +2,12 @@
 
 Trying to force myself to update, rewrite, clean up and release the code and data behind http://unicode.scarfboy.com
 
-...am now findally working on it.
+
+I'm still in the "making a prototype to figuring out what parts it needs" phase, 
+and currently working on a version that works from unicodedata.
+
+Once that's settled I'll probably move to a database so I'm not tied to whatever version python is on.
+
 
 
 ## Code
