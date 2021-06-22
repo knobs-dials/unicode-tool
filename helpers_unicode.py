@@ -88,8 +88,50 @@ bids = {
 
 
 
+def codepoint_assigned(cp):
+    # note that this does _not_ imply it has a name
+    return ('Cn' not in unicodedata.category( chr(cp) )) #filter out unassigneds
+
+def character_name(ch):
+    ''' unicodedata.name(), but doesn't throw an exception on cases that are considered assigned, but do not have a name. 
+
+        In Unicode 12 these are:
+          0000..001F    control codes
+          007F..009F    control codes
+          D800..F8FF    Surrogates and private use
+         17000..187F7   Tangut, seems to be preliminary assignment settled in 13?
+         F0000..FFFFD   private use
+        100000..10FFFD  private use
+    '''
+    cp = ord(ch)
+
+    if cp >= 0x00  and  cp <= 0x1f:
+        return '(control codes have no character names)'
+    elif cp >= 0x7f  and  cp <= 0x9f:
+        return '(control codes have no character names)'    
+    elif cp >= 0xd800  and  cp <= 0xdb7f:
+        return '(high surrogates have no character names)'
+    elif cp >= 0xdb80  and  cp <= 0xdbff:
+        return '(private use surrogates have no character names)'
+    elif cp >= 0xdc00  and  cp <= 0xdfff:
+        return '(low surrogates have no character names)'
+    elif cp >= 0xe000  and  cp <= 0xf8ff:
+        return '(private use areas have no character names)'
+    elif cp >= 0xf0000  and  cp <= 0xFFFFD:
+        return '(private use areas have no character names)'
+    elif cp >= 0x100000  and  cp <= 0x10FFFD:
+        return '(private use areas have no character names)'
+    #elif cp >= 0x17000  and  cp <= 0x187F7:   # Tangut, seems to be 
+    #    return '()'    
+    try:
+        return unicodedata.name( ch )
+    except: # 
+        return '(name not known)'
+      
+
 
 def is_private_use(cp):
+    # arguably 0xdb80..0xdbff as well
     if cp>=0xE000 and cp<=0xF8FF:
         return True
     if cp>=0xF0000 and cp<=0xFFFFF:
@@ -116,12 +158,29 @@ def is_surrogate(cp):
 
 
 
+def is_controlcode(cp):
+    if cp >= 0 and cp<=0x19:
+        return True
+    if cp >= 0x7f and cp<=0x9f:
+        return True
+    return False
+
+def has_controlcode(s):
+    for ch in s:
+        if is_controlcode( ord(ch) ):
+            return True
+    return False
+
+
+
+
 def is_variationselector(cp):
     return (cp >= 0xFE00  and  cp <= 0xFE0F)
 
 
 
 def is_emoji(cp):
+    # WTF what ever are emoji?
     import unicode_emoji
     for frm, to in unicode_emoji.ranges:
         if cp >= frm and cp <= to:
@@ -169,6 +228,9 @@ def has_cjk(s):
             return True
     return False
 
+
+
+# TODO: review and simplify:
 
 # actually encompasses many asian scripts (but doesn't include those in the SMP); CONSIDER splitting out
 reCJK             = re.compile(  r'[\u2E80-\uA640\ua6a0-\uA71F\uA800-\ud7ff\uF900-\uFAFF\uFE30-\uFE4F\uFF61-\uFFDC\u20000-\u2FA1F\u30000–\u3134F]' )
@@ -229,7 +291,6 @@ def significant_cjk(s, thresh=0.2):
 
 
 
-
 def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
     ''' Keeps only certain types of characters, intended to keep just the ones we can show:
 
@@ -252,17 +313,8 @@ def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
             s=unicode(s)
         except:
             s=s.decode('utf8')
-    #removedcats={}
     for c in s:
        tcats    = unicodedata.category( c )
-       #bidircat = unicodedata.bidirectional( c )
-       #print c,tcats
        if tcats in keep2 or tcats[0] in keep1: 
            ret.append(c)
-       #else:
-       #    if tcats not in removedcats:
-       #        removedcats[tcats]=1
-       #    else:
-       #        removedcats[tcats]+=1
-    #print "Removed cats: %s"%removedcats
     return ''.join(ret)
