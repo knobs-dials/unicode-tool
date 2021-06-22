@@ -1,7 +1,6 @@
-#### Some codepages (dos/windows style, useful to alt codes?)
+#### Some codepages useful to Alt codes  (DOS/Windows style)
 
 # codepage byte -> unicode codepoint mappings. Values of -1 mean 'not mapped'.
-
     
 cp437 = [ # cp437[byteval] = unicode codepoint (integer)
     0x0000,0x263A,0x263B,0x2665,0x2666,0x2663,0x2660,0x2022,0x25D8,0x25CB,0x25D9,0x2642,0x2640,0x266A,0x266B,0x263C,
