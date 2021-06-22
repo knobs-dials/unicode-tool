@@ -5,6 +5,14 @@ Trying to force myself to update, rewrite, clean up and release the code and dat
 ...am now findally working on it.
 
 
+## Code
+
+### helpers_unicode.py
+
+Functions like 'is codepoint assined, is it private use, surrogate, control code, CJK, emoji (TODO)'
+
+Also contains some data like category names, plane names, 
+
 
 ## Data
 
