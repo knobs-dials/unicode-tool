@@ -1,4 +1,6 @@
-version_year = { # from https://unicode.org/history/publicationdates.html
+# from https://unicode.org/history/publicationdates.html
+
+version_year = { 
     '13.0.0':('2020','March'),
     '12.1.0':('2019','May'),      '12.0.0': ('2019', 'March'),
     '11.0.0':('2018','June'),
