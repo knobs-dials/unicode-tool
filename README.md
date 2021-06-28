@@ -6,7 +6,7 @@ Trying to force myself to update, rewrite, clean up and release the code and dat
 I'm still in the "making a prototype to figuring out what parts it needs" phase, 
 and currently working on a version that works from unicodedata.
 
-Once that's settled and working I'll probably move to a database so I'm not tied to whatever version python is on, because that was the reason the currently live version is years behind.
+Once that's settled and working I'll probably move to a database so I'm not tied to whatever version python is on, because that's the reason the live version is years behind.
 
 
 ## Code
