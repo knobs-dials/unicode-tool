@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 #
-# creates render-output/<codepoint>_fontname.png for all codepoints present in the
+# creates render-output/<codepoint>_fontname.png for all codepoints present in the font
 #
-# https://fontforge.org/docs/scripting/python/fontforge.html#font
+# See also https://fontforge.org/docs/scripting/python/fontforge.html#font
 
 import glob,sys,os,gc
 import fontforge

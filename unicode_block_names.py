@@ -8,7 +8,9 @@
 
 
 blocks_separate_at = (
-    # There is some additional display logic in unicode.wsgi using this
+    # This is intended as a for presentation of blocks within the planes,
+    #   adding some separation between blocks of distinct types/purposes.
+    # These is some display logic in unicode.wsgi using this
     # CONSIDER: a distinction between 'break block' and 'add spacer'
     
     #BMP:
@@ -28,31 +30,28 @@ blocks_separate_at = (
     #SMP:
     0x1d000,          
     #0x1d100,
-    0x1d300,
-    
+    #0x1d2e0,
     0x1f000,
     0x1f100,
     0x1f300,
     
-    #SIP (none)
+    #SIP
     
-    #TIP (none, not really looked at)
+    #TIP
     
-    #SSP (none)          
-    #Private use:
-    #0x100000,
+    #SSP
 )
 
 
 blocks = [
     # the last value is whether the script is used by a live language. This is purely my own data, not related to Unicode at all.
-    # This is all approximate, and the interface doesn't even say why it's coloring for this, it's just there to help visual parsing.
+    #   Which are mostly approximations, and the interface doesn't even say why it's coloring for this, it's just there for your visual parsing.
            #  -1 for haven't decided yet
            #   1 for used     - script that at least some people still use
            #   2 for small    - small language, or archaic variants
            #   4 for historic - historic/rarely seen/dead  (e.g. CJK Unified Ideographs Extension B)
            #   8 unused
-           #  16 unused
+           #  16 for existing block with no unicode.org PDF
            #  32 for not language-specific (academic use, symbols, etc), and yes, probably in use by someone
            #  64 for purely technical unicode-internal stuff (e.g. surrogates)
            # 128 for privte use
@@ -212,7 +211,7 @@ blocks = [
     (0xd7b0, 0xd7ff, 'Hangul Jamo Extended-B',                  2),
 
     (0xD800, 0xDB7F, 'High Surrogates',                        64),
-    (0xDB80, 0xDBFF, 'High Private Use Surrogates',            64),
+    (0xDB80, 0xDBFF, 'High Private Use Surrogates',     128|64|16),
     (0xDC00, 0xDFFF, 'Low Surrogates',                         64),
     (0xE000, 0xF8FF, 'Private Use Area',                      128),
     (0xF900, 0xFAFF, 'CJK Compatibility Ideographs',            1),
@@ -421,7 +420,9 @@ blocks = [
     # The Warring States scripts ?
     
     # unallocated planes
-    (0x30000,0x3ffff, 'plane 3 (not allocated)',                256),
+
+    (0x30000,0x3134F, 'CJK Unified Ideographs Extension G',       4),
+    (0x31350,0x3ffff, '',                                       256),
     (0x40000,0x4ffff, 'plane 4 (not allocated)',                256),
     (0x50000,0x5ffff, 'plane 5 (not allocated)',                256),
     (0x60000,0x6ffff, 'plane 6 (not allocated)',                256),
@@ -450,14 +451,14 @@ blocks = [
 def block_for_char(c):
    ''' Get the range and name of the block the given character is in.
        Returns (start,end,name)
-               (0,0,Nonw) if not in a known block
+            or (0,0,None) if not in a known block
    '''
    if type(c)==int:
       pass
    elif type(c)==str or type(c)==unicode:
       #if len(c)>1:
       #    return (0,0,None)
-      c=ord(c)
+      c = ord(c)
       
    for start,end,name,_ in blocks:
       if c >= start and c <= end:
@@ -467,24 +468,23 @@ def block_for_char(c):
 
 
 
-# rarely used, so we generate on first use
-# meant to support font suggestion
-block_chars = {}
-def chars_in_block(blockname):
-    global block_chars
-    import unicodedata
-    if len(block_chars) == 0:
-        block_chars = {}
-        for genblockstart,genblockend,genblockname,_ in blocks:
-            block_chars[genblockname] = []
-            for chi in range(genblockstart, genblockend+1):
-                try:
-                    unicodedata.name( unichr(chi) )   # test for whether it exists.  TODO: fix this test and ones like it
-                    block_chars[genblockname].append( chi )
-                except ValueError as e:
-                    pass
-                
-    return block_chars[blockname]
+## rarely used, so we generate on first use
+## meant to support font suggestion
+#block_chars = {}
+#def chars_in_block(blockname):
+#    global block_chars
+#    import unicodedata
+#    if len(block_chars) == 0:
+#        block_chars = {}
+#        for genblockstart,genblockend,genblockname,_ in blocks:
+#            block_chars[genblockname] = []
+#            for chi in range(genblockstart, genblockend+1):
+#                try:
+#                    unicodedata.name( unichr(chi) )   # test for whether it exists.  TODO: fix this test and ones like it
+#                    block_chars[genblockname].append( chi )
+#                except ValueError as e:
+#                    pass
+#    return block_chars[blockname]
 
 
 

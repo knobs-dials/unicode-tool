@@ -2,8 +2,20 @@
 
 Trying to force myself to update, rewrite, clean up and release the code and data behind http://unicode.scarfboy.com
 
-...am now findally working on it.
 
+I'm still in the "making a prototype to figuring out what parts it needs" phase, 
+and currently working on a version that works from unicodedata.
+
+Once that's settled and working I'll probably move to a database so I'm not tied to whatever version python is on, because that's the reason the live version is years behind.
+
+
+## Code
+
+### helpers_unicode.py
+
+Functions like 'is codepoint assined, is it private use, surrogate, control code, CJK, emoji (TODO)'
+
+Also contains some data like category names, plane names, 
 
 
 ## Data
@@ -24,10 +36,18 @@ Can probably be improved upon.
 
 ### named_entities.py
 
-A mapping from codepoints to HTML/XML entity names
+A mapping from codepoints to HTML/XML entity names.
+I should check this for completeness.
 
-This one's a few years out of data and needs work
 
+### unicode_versions.py
+
+Mapping from version string to release date, meant to support "codepoint available since approx" feature.
+
+
+### helpers_codepage.py
+
+codepages 437, 850, and 1252,  supporting the Alt code feature  
 
 
 
