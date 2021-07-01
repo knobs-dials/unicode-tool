@@ -53,7 +53,9 @@ Mapping from version string to release date, meant to support "codepoint availab
 
 ### helpers_codepage.py
 
-codepages 437, 850, and 1252,  supporting the Alt code feature  
+codepages 437, 850, and 1252,  supporting the Alt code stuff.
+
+See also some notes on that at https://helpful.knobs-dials.com/index.php/Alt_code#Alt_and_decimal_codepoint  
 
 
 
