@@ -173,14 +173,16 @@ def has_controlcode(s):
 
 
 
-
 def is_variationselector(cp):
     return (cp >= 0xFE00  and  cp <= 0xFE0F)
 
 
 
+
 def is_emoji(cp):
-    # WTF what ever are emoji?
+    ''' In trying to implement this I noticed even unicode is vague on what emoji are. 
+        I need to rethink this.
+    '''
     import unicode_emoji
     for frm, to in unicode_emoji.ranges:
         if cp >= frm and cp <= to:
@@ -230,19 +232,17 @@ def has_cjk(s):
 
 
 
-# TODO: review and simplify:
+# the -non versions are there because it's slightly easier to remove characters (using re.sub) than it is to get a string of just matching chars (via re.search/findall)
+
+
+# for significant_cjk, to omit various spaces from the test
+reSpace           = re.compile(r'\u0020\u00a0\u1680\u180e\u2000-\u2009\u200a\u202f\u205f\u3000')
 
 # actually encompasses many asian scripts (but doesn't include those in the SMP); CONSIDER splitting out
-reCJK             = re.compile(  r'[\u2E80-\uA640\ua6a0-\uA71F\uA800-\ud7ff\uF900-\uFAFF\uFE30-\uFE4F\uFF61-\uFFDC\u20000-\u2FA1F\u30000–\u3134F]' )
+reCJK             = re.compile( r'[\u2E80-\uA640\ua6a0-\uA71F\uA800-\ud7ff\uF900-\uFAFF\uFE30-\uFE4F\uFF61-\uFFDC\u20000-\u2FA1F\u30000–\u3134F]' )
 reNonCJK          = re.compile( r'[^\u2E80-\uA640\ua6a0-\uA71F\uA800-\ud7ff\uF900-\uFAFF\uFE30-\uFE4F\uFF61-\uFFDC\u20000-\u2FA1F\u30000–\u3134F]' )
-
-reSqueezeSpace    = re.compile('[\ ]+')
-
-# TODO: test the next function
-
-reSpace           = re.compile(r'\u0020\u00a0\u1680\u180e\u2000-\u2009\u200a\u202f\u205f\u3000')
-reNonJapaneseKana = re.compile(r'[^\u3040-\u30FF\uFF65-\uFF9F]')
-reNonKorean       = re.compile(r'[^\u1100-\u11FF\uAC00-\uD7AF\uFFA0-\uFFDC]')
+reNonJapaneseKana = re.compile( r'[^\u3040-\u30FF\uFF65-\uFF9F]' )
+reNonKorean       = re.compile( r'[^\u1100-\u11FF\uAC00-\uD7AF\uFFA0-\uFFDC]' ) # all/mostly hangul? (VERIFY)
 
 def significant_cjk(s, thresh=0.2):
     """ Sees if a string has at least some given fraction of CJK characters.
@@ -257,44 +257,38 @@ def significant_cjk(s, thresh=0.2):
         
         Returns a 2-tuple:
         * whether some portion of the printable characters are CJK
-        * if true, which it seems to be (if not, returns 'unknown')
+        * 'cn', 'ja', 'ko',  or 'xx' if it doesn't know or there is no CJK in there
 
+        TODO: test
     """
-    spaceless     = reSpace.sub('',s)
-    spaceless_len = len(spaceless)
-    just_cjk      = reNonCJK.sub('',spaceless)
-    just_cjk_len  = len(just_cjk)
+    spaceless     = reSpace.sub( '', s )
+    spaceless_len = len( spaceless )
+    just_cjk      = reNonCJK.sub( '', spaceless )
+    just_cjk_len  = len( just_cjk )
 
     is_cjk = False
     if float(just_cjk_len) > thresh*spaceless_len:
         is_cjk=True
-        #print "CJK"
 
     guess_which = 'xx'
     if is_cjk:
         just_kana = reNonJapaneseKana.sub('',just_cjk)
-
-        #print len(just_kana)
-        #print just_cjk_len
         if len(just_kana)>10 or len(just_kana)>0.1*just_cjk_len:
             guess_which = 'ja'
         else:
             just_hangul = reNonKorean.sub('',just_cjk)
-            #print len(just_hangul)
             if len(just_hangul)>10 or len(just_hangul)>0.1*just_cjk_len:
                 guess_which = 'ko'
-            else:
-                guess_which = 'zh'
-            
-    return (is_cjk,guess_which)
+            else: # fall back to assume chinese. Stop ding this if I ever make it wider than CJK
+                guess_which = 'cn'
+    return (is_cjk, guess_which)
 
 
 
 
+# do we use this or was this from another project?
 def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
     ''' Keeps only certain types of characters, intended to keep just the ones we can show:
-
-        TODO: rewrite to use database data instead of unicodedata (right now it's current with us -- python3 uses 12.1.0 -- but eventually this will not be correct)
 
         By default keeps
          - L  (letters)
@@ -306,6 +300,8 @@ def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
         so by implciation removes
          - C (control, format, surrogate, private, unassigned)
          - Z (separators) other than Zs (space separators)
+
+        TODO: rewrite to use database data instead of unicodedata (right now it's current with us -- python3 uses 12.1.0 -- but eventually this will not be correct)
     '''
     ret=[]
     if type(s) is not unicode:
