@@ -32,8 +32,8 @@ Note that the montaged PNGs can be compressed further. Look to things like optip
 
 
 Notes:
-* the -P on the font-render so you do a few fonts at at once ()
-  * font-render-codepoint.sh just calls font-render-codepoints.py. This so that xargs doesn't stop when we crash on an individual font. Which id does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
+* the -P on the xargs running font-render so you do a few fonts at at once
+  * font-render-codepoint.sh just calls font-render-codepoints.py. The point is to swallow an error code, so that xargs doesn't stop when we crash on an individual font. Which it does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
 
 * The montage selects up to six images, randomly for the available ones.
 
