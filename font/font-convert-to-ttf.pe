@@ -1,0 +1,8 @@
+# you can use this like 
+#  fontforge -script tottf.pe nonttf
+#
+# Or in bulk, e.g. like:
+#  find . -iname '*.otf' | xargs -n 1 fontforge -script tottf.pe
+
+Open($1)
+Generate($1:r + ".ttf")
