@@ -68,3 +68,12 @@ On ubuntu this is covered by
 * clean up these scripts, they're look like one-time scripts from ten years ago because they are
 
 * there are some images that have a lot of white around them for weird-bounding-box reasons. I think this is now -trim'd away during montage, but check this works as intended.
+
+
+## Notes
+
+* The `.pe` scripts are for fontforge, you can use them like
+  - `fontforge -script font-convert-to-woff.pe nonwoff`
+  - in bulk, like `find . -iname '*.[ot]tf' | xargs -n 1 fontforge -script font-convert-to-woff.pe`
+
+
