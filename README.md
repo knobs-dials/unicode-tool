@@ -1,12 +1,18 @@
 ## unicode-tool
 
-Trying to force myself to update, rewrite, clean up and release the code and data behind http://unicode.scarfboy.com
+Forcing myself to update, rewrite, clean up and release the code and data behind http://unicode.scarfboy.com
 
 
-I'm still in the "making a prototype to figuring out what parts it needs" phase, 
-and currently working on a version that works from unicodedata.
+## Current plan:
 
-Once that's settled and working I'll probably move to a database so I'm not tied to whatever version python is on, because that's the reason the live version is years behind.
+I'm still in the "making a prototype to figuring out what parts it needs" phase
+
+Next steps:
+- figure out CJK again
+- figure out Emoji
+
+Currently it's a version that uses the `unicodedata` module for most things. 
+Once that's functional I'll probably move all data to a database, so that it's no longer tied to whatever the hosting python version is on, because that's the reason the current unicode.scarfboy.com is years behind.
 
 
 ## Code
