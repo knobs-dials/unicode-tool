@@ -32,8 +32,8 @@ Note that the montaged PNGs can be compressed further. Look to things like optip
 
 
 Notes:
-* the -P on the font-render so you do a few fonts at at once ()
-  * font-render-codepoint.sh just calls font-render-codepoints.py. This so that xargs doesn't stop when we crash on an individual font. Which id does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
+* the -P on the xargs running font-render so you do a few fonts at at once
+  * font-render-codepoint.sh just calls font-render-codepoints.py. The point is to swallow an error code, so that xargs doesn't stop when we crash on an individual font. Which it does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
 
 * The montage selects up to six images, randomly for the available ones.
 
@@ -68,3 +68,12 @@ On ubuntu this is covered by
 * clean up these scripts, they're look like one-time scripts from ten years ago because they are
 
 * there are some images that have a lot of white around them for weird-bounding-box reasons. I think this is now -trim'd away during montage, but check this works as intended.
+
+
+## Notes
+
+* The `.pe` scripts are for fontforge, you can use them like
+  - `fontforge -script font-convert-to-woff.pe nonwoff`
+  - in bulk, like `find . -iname '*.[ot]tf' | xargs -n 1 fontforge -script font-convert-to-woff.pe`
+
+
