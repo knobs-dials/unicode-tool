@@ -5,7 +5,7 @@ Forcing myself to update, rewrite, clean up and release the code and data behind
 
 ## Current plan:
 
-I'm still in the "making a prototype to figuring out what parts it needs" phase
+I'm mostly still in the "making a prototype to figuring out what parts it needs" phase, though an update breaking the previous version has accelerated things a bit.
 
 Next steps:
 - figure out CJK again
