@@ -57,6 +57,7 @@ On ubuntu this is covered by
 
         apt install fontforge-nox python3-fontforge imagemagick
 
+...at least in theory. Fontforge versions are a little finicky.
 
 
 ## TODO
