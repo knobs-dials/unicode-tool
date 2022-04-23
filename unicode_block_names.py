@@ -9,7 +9,7 @@
 
 blocks_separate_at = (
     # This is intended as a for presentation of blocks within the planes,
-    #   adding some separation between blocks of distinct types/purposes.
+    #   to add some separation between blocks of distinct types/purposes.
     # These is some display logic in unicode.wsgi using this
     # CONSIDER: a distinction between 'break block' and 'add spacer'
     
@@ -41,7 +41,6 @@ blocks_separate_at = (
     
     #SSP
 )
-
 
 blocks = [
     # the last value is whether the script is used by a live language. This is purely my own data, not related to Unicode at all.
@@ -291,7 +290,7 @@ blocks = [
     (0x111E0, 0x111FF, 'Sinhala Archaic Numbers',               4), # https://en.wikipedia.org/wiki/Sinhala_Archaic_Numbers
     (0x11200, 0x1124F, 'Khojki',                                4), # https://en.wikipedia.org/wiki/Khojki
     (0x11250, 0x1127F, '',                                    256),
-    (0x11280, 0x112AF, 'Multani',                             256),
+    (0x11280, 0x112AF, 'Multani',                               4), # https://en.wikipedia.org/wiki/Multani_script
     (0x112B0, 0x112FF, 'Khudawadi',                             2), # https://en.wikipedia.org/wiki/Khudabadi_script
     (0x11300, 0x1137F, 'Grantha',                               4), # https://en.wikipedia.org/wiki/Grantha_alphabet
     (0x11380, 0x113ff, '',                                    256),
@@ -449,13 +448,14 @@ blocks = [
 
 
 def block_for_char(c):
-   ''' Get the range and name of the block the given character is in.
-       Returns (start,end,name)
+   ''' Given a length-1 str, 
+       returns the range and name of the block the given character is in.
+       Returns (start,end,name),
             or (0,0,None) if not in a known block
    '''
    if type(c)==int:
       pass
-   elif type(c)==str or type(c)==unicode:
+   elif type(c)==str:
       #if len(c)>1:
       #    return (0,0,None)
       c = ord(c)
