@@ -1,8 +1,8 @@
-# TODO: chekc all sets
+# TODO: check all sets
 # TODO: decide how to deal with HTML5's multi-codepoint entities
 # TODO: format HTML5's numbers as hex, for consistency's sake
 
-data = {        
+data = {
     'XML 1.0':{
         0x0027: 'apos',
         0x0022: 'quot',

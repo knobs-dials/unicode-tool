@@ -1,6 +1,6 @@
 # TODO: I remember having move involved TeX translation, see if it's relevant
 
-def trans(s):
+def trans(s: str):
     ''' Replaces on a per-character basis
         (TODO:)
         TODO: see if this can be more flexible

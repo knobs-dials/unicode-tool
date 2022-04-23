@@ -16,12 +16,12 @@ for fn in l:
 
 
 # Turn that into ranges, because it's smaller
-#   I once found a smart oneliner, but this works.
+#   I once found a smart oneliner (used in font-codepoint-coverage, in fact), but this is arguably clearer
 scp = sorted(codepoints)
 ranges = []
 range_end = range_start = prev = scp.pop(0)
 for v in scp:
-    if v == prev+1:
+    if v == prev + 1: # still contiguous
         range_end = v
     else: # break; write out previous range and start new one
         ranges.append( (range_start, range_end) )
