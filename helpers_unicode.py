@@ -1,11 +1,15 @@
-''' Most of these functions work on integer lists,
-    which is not how python in general works
-    but is convenient for this specific tool.
-
-    TODO: remove all uses of unicodedata
 '''
-# See also  helpers_string.remove_diacritics()
+    Note that 
+     functions that that work on strings are regular python strings, 
+     but most functions that take a codepoint take it as an int, which is not how python works with unicode but is convenient for this specific tool.
 
+    TODO: 
+    - be more consistent about that
+    - remove all uses of unicodedata
+
+    CONSIDER:
+    - putting helpers_string.remove_diacritics() in here to assist confusables
+'''
 
 import unicodedata
 import re
@@ -94,27 +98,14 @@ cats = {
  
 
 def simpler_category_description(ch:int, a_an=True):
-    ''' EXPERIMENT: simpler variant of the more official categories, more of a "can dump this in a description without thinking" thing '''
-    simpler_bids = {
-        #'L':'',
-        #'LRE':'',
-        #'LRO':'',
+    ''' EXPERIMENT: short "can dump this in a description without thinking" desciption '''
+    simpler_bids = { # omits left-to-right (I'm biased), overly technical stuff, and things that duplicate what the general category would also say
         'R':'Right-to-Left',
         'AL':'Right-to-Left (Arabic)',
         'RLE':'Right-to-Left',
         'RLO':'Right-to-Left',
-        #'PDF':'',
-        #'EN':'',
-        #'ES':'',
-        #'ET':'',
-        'AN':'Arabic', # the following will probably add 'decimal digit' or such
-        #'CS':'',
-        #'NSM':'',
-        #'BN':'',
-        #'B':'',
-        #'S':'',
+        'AN':'Arabic', # the general category will probably add 'decimal digit' or such
         'WS':'whitespace',
-        #'ON':'',
     }
 
     simpler_cats = { 
@@ -179,8 +170,8 @@ def codepoint_assigned(cp: int):
     return ('Cn' not in unicodedata.category( chr(cp) )) #filter out unassigneds
 
 
-def character_name(ch: str):
-    ''' unicodedata.name(), but doesn't throw an exception on cases that are considered assigned, but do not have a name. 
+def character_name(ch: str): # TODO: change to int for consistency
+    ''' unicodedata.name(), but doesn't throw an exception on cases that  are considered assigned yet do not have a name. 
 
         In Unicode 12 these are:
           0000..001F    control codes
@@ -190,8 +181,8 @@ def character_name(ch: str):
          F0000..FFFFD   private use
         100000..10FFFD  private use
     '''
-    cp = ord(ch)
 
+    cp = ord(ch)
     if cp >= 0x00  and  cp <= 0x1f:
         return '(control codes have no character names)'
     elif cp >= 0x7f  and  cp <= 0x9f:
@@ -208,8 +199,7 @@ def character_name(ch: str):
         return '(private use areas have no character names)'
     elif cp >= 0x100000  and  cp <= 0x10FFFD:
         return '(private use areas have no character names)'
-    #elif cp >= 0x17000  and  cp <= 0x187F7:   # Tangut, seems to be 
-    #    return '()'    
+
     try:
         #if 0:
         #    curs = conn.cursor()
