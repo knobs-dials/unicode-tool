@@ -1,11 +1,15 @@
-import unicodedata
-import re
+''' Most of these functions work on integer lists,
+    which is not how python in general works
+    but is convenient for this specific tool.
 
-# TODO: remove all uses of unicodedata
-
-
+    TODO: remove all uses of unicodedata
+'''
 # See also  helpers_string.remove_diacritics()
 
+
+import unicodedata
+import re
+from typing import List
 
 
 planenames = {
@@ -30,6 +34,28 @@ planenames = {
 
 
 # nicer names for unicode categories
+
+bids = {
+     'L':'Left-to-Right',
+   'LRE':'Left-to-Right Embedding',
+   'LRO':'Left-to-Right Override',
+     'R':'Right-to-Left',
+    'AL':'Right-to-Left Arabic',
+   'RLE':'Right-to-Left Embedding',
+   'RLO':'Right-to-Left Override',
+   'PDF':'Pop Directional Format',
+    'EN':'European Number',
+    'ES':'European Number Separator',
+    'ET':'European Number Terminator',
+    'AN':'Arabic Number',
+    'CS':'Common Number Separator',
+   'NSM':'nonspacing mark',
+    'BN':'Boundary Neutral',
+     'B':'Paragraph Separator',
+     'S':'Segment Separator',
+    'WS':'Whitespace',
+    'ON':'Other Neutrals',
+}
 
 cats = {
    'Lu':'uppercase letter',
@@ -64,35 +90,96 @@ cats = {
    'Cn':'(character not assigned)'
 }
     
-bids = {
-     'L':'Left-to-Right',
-   'LRE':'Left-to-Right Embedding',
-   'LRO':'Left-to-Right Override',
-     'R':'Right-to-Left',
-    'AL':'Right-to-Left Arabic',
-   'RLE':'Right-to-Left Embedding',
-   'RLO':'Right-to-Left Override',
-   'PDF':'Pop Directional Format',
-    'EN':'European Number',
-    'ES':'European Number Separator',
-    'ET':'European Number Terminator',
-    'AN':'Arabic Number',
-    'CS':'Common Number Separator',
-   'NSM':'nonspacing mark',
-    'BN':'Boundary Neutral',
-     'B':'Paragraph Separator',
-     'S':'Segment Separator',
-    'WS':'Whitespace',
-    'ON':'Other Neutrals',
-}
+
+ 
+
+def simpler_category_description(ch:int, a_an=True):
+    ''' EXPERIMENT: simpler variant of the more official categories, more of a "can dump this in a description without thinking" thing '''
+    simpler_bids = {
+        #'L':'',
+        #'LRE':'',
+        #'LRO':'',
+        'R':'Right-to-Left',
+        'AL':'Right-to-Left (Arabic)',
+        'RLE':'Right-to-Left',
+        'RLO':'Right-to-Left',
+        #'PDF':'',
+        #'EN':'',
+        #'ES':'',
+        #'ET':'',
+        'AN':'Arabic', # the following will probably add 'decimal digit' or such
+        #'CS':'',
+        #'NSM':'',
+        #'BN':'',
+        #'B':'',
+        #'S':'',
+        'WS':'whitespace',
+        #'ON':'',
+    }
+
+    simpler_cats = { 
+        'Lu':'uppercase letter',
+        'Ll':'lowercase letter',
+        'Lt':'titlecase letter',
+        'Lm':'modifier letter',
+        'Lo':'letter',
+        'Mn':'nonspacing mark',
+        'Mc':'spacing combining mark',
+        'Me':'enclosing mark',
+        'Nd':'decimal digit',
+        'Nl':'letter-style number',
+        'No':'number: other',
+        'Pc':'punctuation',
+        'Pd':'punctuation',
+        'Ps':'punctuation',
+        'Pe':'punctuation',
+        'Pi':'punctuation',
+        'Pf':'punctuation',
+        'Po':'punctuation',
+        'Sm':'math symbol',
+        'Sc':'currency symbol',
+        'Sk':'modifier symbol',
+        'So':'symbol',
+        'Zs':'space separator',
+        'Zl':'line separator',
+        'Zp':'paragraph separator',
+        'Cc':'control character',
+        'Cf':'format character',
+        'Cs':'surrogate codepoint',
+        'Co':'private use character',
+        #'Cn':'(character not assigned)'
+    }
+
+    ret = []
+
+    bidir_cat  = unicodedata.bidirectional( chr(ch) )
+    gen_cat    = unicodedata.category( chr(ch) )
+
+    if gen_cat=='Cn':
+        return 'not an assigned character'
+    else:
+        if bidir_cat in simpler_bids:
+            ret.append( simpler_bids[bidir_cat] )
+        if gen_cat in simpler_cats:
+            ret.append( simpler_cats[gen_cat] )
+
+    if a_an and len(ret)>0:
+        if len( ret[0] ) >0:
+            if ret[0][0].lower() in 'aeiou':
+                ret[0] = 'an %s'%ret[0]
+            else:
+                ret[0] = 'a %s'%ret[0]
+
+    return ' '.join(ret)
 
 
 
-def codepoint_assigned(cp):
+def codepoint_assigned(cp: int):
     # note that this does _not_ imply it has a name
     return ('Cn' not in unicodedata.category( chr(cp) )) #filter out unassigneds
 
-def character_name(ch):
+
+def character_name(ch: str):
     ''' unicodedata.name(), but doesn't throw an exception on cases that are considered assigned, but do not have a name. 
 
         In Unicode 12 these are:
@@ -124,13 +211,18 @@ def character_name(ch):
     #elif cp >= 0x17000  and  cp <= 0x187F7:   # Tangut, seems to be 
     #    return '()'    
     try:
+        #if 0:
+        #    curs = conn.cursor()
+        #    curs.execute('select name from cpbasics where codepoint=%s', ( cp, ))
+        #    conn.rollback()
+        #else:
         return unicodedata.name( ch )
     except: # 
         return '(name not known)'
       
 
 
-def is_private_use(cp):
+def is_privateuse(cp: int):
     # arguably 0xdb80..0xdbff as well
     if cp>=0xE000 and cp<=0xF8FF:
         return True
@@ -140,32 +232,87 @@ def is_private_use(cp):
         return True
     return False
 
-def has_private_use(s):
-    for s1 in s:
-        if is_privateuse( ord(s1) ):
+def has_privateuse(s: str):
+    for char in s:
+        if is_privateuse( ord(char) ):
             return True
     return False
 
 
-def is_surrogate(cp):
+def is_surrogate(cp: int):
     if cp>=0xD800 and cp<=0xDBFF: # High Surrogate Area
         return True
+    #if cp>=0xDB80 and cp<=0xDBFF: # High Private Use Surrogates 
+    #    return True
     if cp>=0xDC00 and cp<=0xDFFF: # Low Surrogate Area
         return True    
-    if cp>=0xDB80 and cp<=DBFF:   # High Private Use Surrogates 
-        return True
     return False
 
 
+def is_utf16_with_surrogates(cp_list):
+    ' if max codepoint is <=U+FFFF and there is at least one codepoint in the surrogate range '
+    if len(cp_list)>0:
+        if max(cp_list) <= 0xffff:
+            has_surrogates = False
+            for cp in cp_list:
+                if is_surrogate(cp):
+                    return True
+    return False
 
-def is_controlcode(cp):
+def remove_lone_surrogates(cp_list):
+    ' written more for readability (ish) than brevity or efficiency '
+    # a surrogate pair is a high surrogte (d800..dbff) followed by a low surrogate (dc00..dfff)    TODO: double check I don't have that backards
+    def high_surrogate(cp):
+        return (cp>=0xd800 and cp<=0xdbff)
+    def low_surrogate(cp):
+        return (cp>=0xdc00 and cp<=0xdfff)
+    ret=[]
+    ll = len(cp_list)
+    for i in range(ll):
+        add_cp = True
+        # remove high surrogate not followed by a low surrogate
+        if high_surrogate(cp_list[i]):
+            if i==ll-1: # end of string
+                add_cp = False
+            if i<ll-2 and not low_surrogate(cp_list[i+1]): # 
+                add_cp = False
+        # remove low surrogate not preceded by a high surrogate
+        if low_surrogate(cp_list[i]):
+            if i==0:
+                add_cp = False
+            if i>=1 and not high_surrogate(cp_list[i-1]):
+                add_cp = False
+
+        if add_cp:
+            ret.append(cp_list[i])
+    return ret
+    # string form is easier:
+    #bad_surrogates = re.compile( r'([\ud800-\udbff](?![\udc00-\udfff]))|((?<![\ud800-\udbff])[\udc00-\udfff])')
+    #qs2 = bad_surrogates.sub('\ufffd', qs)
+
+
+def interpret_any_surrogates(cp_list):
+    ' may throw a UnicodeDecodeError e.g. on lone surrogates '
+    ret_cp = [] 
+    if is_utf16_with_surrogates(cp_list):
+        ustr = ''.join(  chr(cp)  for cp in cp_list  )
+        ustr = ustr.encode('utf-16-le','surrogatepass').decode('utf-16-le') # slight trickery
+        for char in ustr:
+            ret_cp.append( ord(char) )
+        return ret_cp
+    else:
+        return cp_list
+
+
+
+def is_controlcode(cp: int):
     if cp >= 0 and cp<=0x19:
         return True
     if cp >= 0x7f and cp<=0x9f:
         return True
     return False
 
-def has_controlcode(s):
+def has_controlcode(s: str):
     for ch in s:
         if is_controlcode( ord(ch) ):
             return True
@@ -173,13 +320,13 @@ def has_controlcode(s):
 
 
 
-def is_variationselector(cp):
+def is_variationselector(cp: int):
     return (cp >= 0xFE00  and  cp <= 0xFE0F)
 
 
 
 
-def is_emoji(cp):
+def is_emoji(cp: int):
     ''' In trying to implement this I noticed even unicode is vague on what emoji are. 
         I need to rethink this.
     '''
@@ -189,7 +336,7 @@ def is_emoji(cp):
             return True
     return False
 
-def has_emoji(s):
+def has_emoji(s: str):
     for s1 in s:
         if is_emoji( ord(s1) ):
             return True
@@ -198,32 +345,25 @@ def has_emoji(s):
 
 
 
-def is_cjk(i):
+def is_cjk(cp: int):
     ''' whether a character (len-1 string  or  int) is CJK
  
         (test is a bit wide now, more like 'asian script' - TODO: make more precise
     '''
-    #if type(i) is str:
-    #    if len(i)==1:
-    #        i=ord(i)
-    #    else:
-    #        raise ValueError('Expected an integer or length-one string')
-    #elif type(i) not in (int,long):
-    #    raise ValueError('Expected an integer or length-one string') 
-    if i>0x2e80 and i<0xA4CF:  # bunch of blocks, not all relevant
+    if cp>0x2e80 and cp<0xA4CF:  # bunch of blocks, not all relevant
         return True
-    if i>0xf900 and i<0xfaff:  # CJK Compatibility Ideographs
+    if cp>0xf900 and cp<0xfaff:  # CJK Compatibility Ideographs
         return True
-    if i>0xFE30 and i<0xFE4F:  # Vertical Forms
+    if cp>0xFE30 and cp<0xFE4F:  # Vertical Forms
         return True
-    if i>0xff00 and i<0xfeff:  # Halfwidth and Fullwidth Forms
+    if cp>0xff00 and cp<0xfeff:  # Halfwidth and Fullwidth Forms
         return True
-    if i>0x20000 and i<0x2ffff: # SIP. includes 33k of unallocateds, but hey...
+    if cp>0x20000 and cp<0x2ffff: # SIP. includes 33k of unallocateds, but hey...
         return True
     return False
 
 
-def has_cjk(s):
+def has_cjk(s: str):
     ''' whether a string contains CJK haracters '''
     for cp in s:
         if is_cjk( ord(cp) ):
@@ -244,7 +384,7 @@ reNonCJK          = re.compile( r'[^\u2E80-\uA640\ua6a0-\uA71F\uA800-\ud7ff\uF90
 reNonJapaneseKana = re.compile( r'[^\u3040-\u30FF\uFF65-\uFF9F]' )
 reNonKorean       = re.compile( r'[^\u1100-\u11FF\uAC00-\uD7AF\uFFA0-\uFFDC]' ) # all/mostly hangul? (VERIFY)
 
-def significant_cjk(s, thresh=0.2):
+def significant_cjk(s: str, thresh=0.2):
     """ Sees if a string has at least some given fraction of CJK characters.
 
         Assumes it is if more than a certain fraction (controlled by thresh) are CJK characters.
@@ -287,7 +427,7 @@ def significant_cjk(s, thresh=0.2):
 
 
 # do we use this or was this from another project?
-def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
+def remove_nonprintable(s: str, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
     ''' Keeps only certain types of characters, intended to keep just the ones we can show:
 
         By default keeps
@@ -314,3 +454,7 @@ def remove_nonprintable(s, keep1=('L','S','N','M','P','Zs'), keep2=('Zs',)):
        if tcats in keep2 or tcats[0] in keep1: 
            ret.append(c)
     return ''.join(ret)
+
+
+
+
