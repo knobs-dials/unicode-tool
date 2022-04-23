@@ -1,6 +1,8 @@
 import html
 
-def nodetext(s):
+# CONSIDER: merge into unicode.wsgi
+
+def nodetext(s: str):
     ''' Escapes for HTML/XML text nodes:
         Replaces <, >, and & with entities
         Leaves unicode be.
@@ -8,7 +10,7 @@ def nodetext(s):
     '''
     return html.escape(s)
 
-def attr(s):#,numeric=True, apos=True):
+def attr(s: str):#,numeric=True, apos=True):
     ''' Escapes for use in HTML(/XML) node attributes:
         Escapes <, >, &, ', "
 
