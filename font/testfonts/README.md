@@ -27,7 +27,7 @@ Number of codepoints: 4622
 
 Part of GNU FreeFont: https://en.wikipedia.org/wiki/GNU_FreeFont
 
-License: GPL3 with [Font Exception 2](https://en.wikipedia.org/wiki/GPL_font_exception), meaning they can be embedded
+License: GPL3 (with [Font Exception 2](https://en.wikipedia.org/wiki/GPL_font_exception), meaning they can be embedded without implication)
 
 
 
