@@ -1,7 +1,7 @@
 
 These fonts are provided to get you started generating images.
 
-If I'm reading any of these licenses wront, or misinterpreting their compatibility to be in this respository, tell me and I'll remove them (I might notice before then).
+If I'm reading any of these licenses wrong, or misinterpreting their compatibility to be in this respository, tell me and I'll remove them (I might notice before then).
 
 
 
