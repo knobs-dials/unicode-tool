@@ -9,7 +9,7 @@ If I'm reading any of these licenses wront, or misinterpreting their compatibili
 
 Number of codepoints: 4622
 
-Part of GNU FreeFont: https://en.wikipedia.org/wiki/GNU_FreeFont
+Part of GNU FreeFont: https://en.wikipedia.org/wiki/GNU_FreeFont (which has more coverage than this, actually)
 
 License: GPL3 (with [Font Exception 2](https://en.wikipedia.org/wiki/GPL_font_exception), meaning they can be embedded without implication)
 
