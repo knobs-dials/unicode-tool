@@ -37,24 +37,18 @@ Aims to be a pan-unicode font.
 
 There's no site anymore, see https://en.wikipedia.org/wiki/Code2000
 
+_CODE 2000_
+* Number of codepoints: 53069
+
+_CODE 2001_ 
+* augments 2000, mostly with some older scripts
+* Number of codepoints: 2985
+
+_CODE 2002_ 
+* augments 2000 and 2001, with CJK in SIP
+* Number of codepoints: 20409
+
 License: Shareware and freeware, I'm assuming it's not an issue
-
-
-CODE 2000
-
-Number of codepoints: 53069
-
-
-CODE 2001 - augments 2000, mostly with some older scripts
-
-Number of codepoints: 2985
-
-
-CODE 2002 - augments 2000 and 2001, mostly CJK in SIP
-
-Number of codepoints: 20409
-
-
 
 
 ## You might consider
