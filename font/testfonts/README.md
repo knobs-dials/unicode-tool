@@ -58,16 +58,6 @@ https://osdn.net/projects/hanazono-font/
 
 
 
-## OpenSans
-
-Number of codepoints: 883
-
-License: Open Font License, see from https://github.com/googlefonts/opensans
-
-
-
-
-
 ## You might consider
 
 Not here for licensing reasons, but you might consider using them for better coverage
