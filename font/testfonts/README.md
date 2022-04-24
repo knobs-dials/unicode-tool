@@ -56,3 +56,10 @@ License: Shareware and freeware, I'm assuming it's not an issue
 Not here for licensing reasons, but you might consider using them for better coverage
 
 
+
+## Notes
+
+* [Unicode Fonts for Ancient Scripts](https://dn-works.com/ufas/) seems to have mostly ended up in GNU Freefont?
+
+
+
