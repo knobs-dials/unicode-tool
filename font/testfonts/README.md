@@ -46,11 +46,13 @@ License: Shareware and freeware, I'm assuming it's not an issue
 
 ## Hanazono
 
-Hana Min A
+_HanaMinA_
+* Most of the CJK basics
+* Number of codepoints: 35892
 
-Hana Min B
-
-Hana Min Plus
+_HanaMinB_
+* CJK Unified Ideographs Extensions B through F
+* Number of codepoints: 52945
 
 License: dual license: Hanazono Font License, and the Open Font License.
 
@@ -62,6 +64,7 @@ https://osdn.net/projects/hanazono-font/
 
 Not here for licensing reasons, but you might consider using them for better coverage
 
+TODO
 
 
 ## Notes
