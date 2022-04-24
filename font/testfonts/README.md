@@ -47,7 +47,7 @@ License: Shareware and freeware, I'm assuming it's not an issue
 ## Hanazono
 
 _HanaMinA_
-* Most of the basics
+* Most of the CJK basics
 * Number of codepoints: 35892
 
 _HanaMinB_
