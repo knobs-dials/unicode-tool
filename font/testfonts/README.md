@@ -13,13 +13,6 @@ License: "As of Unifont version 13.0.04, the fonts are dual-licensed under the S
 
 
 
-## OpenSans
-
-Number of codepoints: 883
-
-License: Open Font License, see from https://github.com/googlefonts/opensans
-
-
 
 ## FreeSans
 
@@ -49,6 +42,30 @@ _CODE 2002_
 * Number of codepoints: 20409
 
 License: Shareware and freeware, I'm assuming it's not an issue
+
+
+## Hanazono
+
+Hana Min A
+
+Hana Min B
+
+Hana Min Plus
+
+License: dual license: Hanazono Font License, and the Open Font License.
+
+https://osdn.net/projects/hanazono-font/
+
+
+
+## OpenSans
+
+Number of codepoints: 883
+
+License: Open Font License, see from https://github.com/googlefonts/opensans
+
+
+
 
 
 ## You might consider
