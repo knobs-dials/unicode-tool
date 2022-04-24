@@ -1,0 +1,73 @@
+#!/usr/bin/python
+
+import sys
+import os
+from PIL import Image
+import shutil
+
+args = sys.argv[1:]
+
+if len(args) != 2:
+    print "Usage: %s fromdir todir"%os.path.basename(sys.argv[0])
+    sys.exit(-1)
+
+fromdir = args[0]
+todir   = args[1]
+
+fromfiles = set( os.listdir(fromdir) )
+tofiles   = set( os.listdir(todir) )
+
+for fn in sorted( fromfiles ):
+    f_ffn  = os.path.join( fromdir, fn )
+    t_ffn  = os.path.join( todir, fn )
+
+    if not os.path.exists( t_ffn ):
+        print "Target %r doesn't exist, copying it in"%fn
+        shutil.copy(f_ffn, todir)
+    else:
+        #continue
+        f_stob = os.stat( f_ffn )
+        t_stob = os.stat( t_ffn )
+
+        #f_size = f_stob.st_size
+        #t_size = t_stob.st_size
+
+        try:
+            f_im = Image.open( f_ffn )
+        except:
+            # arguably already grounds for moving in itself
+            print f_ffn
+            raise
+        
+        try:
+            t_im = Image.open( t_ffn )
+        except:
+            print t_ffn
+            raise
+
+        f_pixels = f_im.size[0] * f_im.size[1]
+        t_pixels = t_im.size[0] * t_im.size[1]       
+
+        move = False
+        #if f_size>t_size:
+        #    #print "  source file is larger"
+        #    move = True
+        #else:
+        #    pass
+        #    #print "  source file is same or smaller"
+
+        if f_pixels*0.8 > t_pixels:
+            #print "  source image is larger"
+            move = True
+        else:
+            pass
+            #print "  source image is same or smaller"
+
+        if move:
+            print "For %r (%r -> %r)"%(fn, f_ffn, t_ffn)
+            print "  source is larger, replacing target     (%spx   and %spx)"%(f_pixels, t_pixels)
+            shutil.copy(f_ffn, t_ffn)
+        #else:
+        #    print "For %r (%r -> %r)"%(fn, f_ffn, t_ffn)
+        #    print "  target is same or larger, leaving it"
+

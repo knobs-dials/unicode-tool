@@ -1,0 +1,136 @@
+#!/usr/bin/python
+
+#
+# TODO: report on most helpful fonts?   Unique converage (e.g. for dead languages)? Smallish set that covers everything?
+#
+#
+
+
+import sys
+import os
+
+from supportingdata import uni_plane_block_names
+import helpers_shellcolor as sc
+
+import ttfquery
+from ttfquery import describe, glyphquery, glyph
+
+
+
+files = sys.argv[1:]
+
+if len(files) == 0:
+    print "Need some font files to work on"
+    sys.exit(-1)
+    
+print "Note that percentages are approximate because of the difference between printable characters and valid codepoints."
+
+for filename in files:
+          
+    try:    
+        block_count = {}
+        codepoint_handled={}
+        
+        for _,_,blockname,live in uni_plane_block_names.blocks:
+            block_count[blockname] = 0
+
+        font = describe.openFont( filename )
+
+        familyname = describe.shortName(font)[1]  # TODO: verify
+        before=familyname
+        decodeme = False
+        for c in familyname:
+            if ord(c)>=0x80:
+                decodeme = True
+                break
+        if decodeme:
+            #print 
+            #print 'DECODEME %r'%familyname
+            if '\x00' in familyname:
+                #print "Looks like UTF16"
+                try:
+                    familyname = familyname.decode('utf-16-be')
+                except:
+                    raise
+            else:
+                #print "Does not look like UTF16, trying UTF8"
+                try:
+                    familyname = familyname.decode('utf8')
+                except:
+                    raise
+                #familyname = familyname.decode('latin1')
+            break
+
+        #sys.stderr.write('Getting chars from font family %r\n'%familyname)
+        #sys.stderr.flush()
+
+        cmap = font['cmap']
+        for table in cmap.tables: # TODO: figure out what the table types are
+            for codepoint in table.cmap:
+                name = table.cmap[codepoint]
+                if name in ('.notdef', '.null'):
+                    #print 'NOOO',name
+                    continue
+                elif name.startswith('.notdef'):
+                    #print 'NOOO',name
+                    continue
+
+                if codepoint not in codepoint_handled:
+                    _,_,blockname = uni_plane_block_names.block_for_char( codepoint )
+                    if blockname==None:
+                        print "Codepoint (%d, U+%04x) in unknown block. Do we need newer data?"%(codepoint,codepoint)
+                    else:
+                        #print codepoint,name, blockname
+                        block_count[blockname] += 1
+                        codepoint_handled[codepoint] = True
+
+        ## Report
+        print '-'*50
+        print 'Font: %r'%familyname, '  ',sc.darkgray('(%s)'%filename)
+        for blstart,blend, blockname,_ in uni_plane_block_names.blocks:
+            if blockname==''  or  'not allocated' in blockname  or  'private use' in blockname.lower():
+                continue
+            out_of = uni_plane_block_names.valid_chars_per_blockname[blockname]            
+            if blockname in block_count and out_of>0:
+                percentage = (100.*block_count[blockname])/float(out_of)
+                mention = '%50r (U+%04X-U+%04X): %3d%% - %5d out of %5d'%(blockname, blstart, blend, percentage, block_count[blockname], out_of )
+                if percentage == 0:
+                    print sc.darkgray(mention)
+                elif percentage < 20:
+                    print sc.red(mention)
+                elif percentage >= 98: # allow for rounding :)
+                    print sc.green(mention)
+                else:
+                    print sc.orange(mention)
+                    
+            elif out_of==0:
+                print '%50r (U+%04X-U+%04X):        %5d out of zero predefined glyphs'%(blockname,blstart,blend, block_count[blockname] )
+            else:
+                print '%50r (U+%04X-U+%04X): 03%%  - out of %5d (TEST)'%(blockname,blstart,blend, out_of)
+
+        ranges = []
+        cpsort = sorted( codepoint_handled )
+        r_first = cpsort[0] # first in range
+        r_prev  = cpsort[0] # last seen cp
+        for cp in cpsort[1:]:
+            #print cp
+            if cp < 0x20:
+                continue
+            if cp == r_prev+1:   # continuation
+                r_prev = cp
+                continue
+            else: #  break.  store last range,  start with new range
+                ranges.append( (r_first,r_prev) )
+                r_first = cp
+                r_prev  = cp
+        ranges.append( (r_first,r_prev) )
+        ranges_s=[]
+        for st,en in ranges:
+            ranges_s.append( 'U+%02X-U+%02X'%(st,en) )
+        print ', '.join(ranges_s)
+            
+    except Exception, e:
+        raise
+        # assume it happened early enough (in the font open) and we effectively just ignored it.
+        print e
+        #raise
