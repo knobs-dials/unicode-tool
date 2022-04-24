@@ -15,27 +15,28 @@ To that end:
 
 ## How to use the font rendering
 
-To generate separate PNG images for each glyph, for many TTF/OTF files (and some parallelism):
+To generate separate PNG images for each glyph, for many TTF/OTF files, and with some parallelism:
 
         find . -iname '*.[ot]tf' | xargs -P 6 -n 1 ./font-render-all.sh
 
 Keep in mind this takes a long time, and if you run it on a bunch of fonts, may create hundreds of thousands of images.
-After that's done for *all* the fonts you want, you can create montages for each codepoint based on the currently present images via
+After that's done for *all* the fonts you want (and consider deduplicating identical files), you can create montages for each codepoint based on the currently present images via:
 
         font-codepoint-montage
 
  
-Note that the montaged PNGs can be compressed further. Look to things like optipng, pngcrush, and such. (I got compression to approx 60%), e.g.
+Optionally, the montaged PNGs can be compressed further. Look to things like optipng, pngcrush, and such. I got compression to approx 60% with:
 
         cd montaged/
         find . -maxdepth 1 | xargs -n 100 -P 6 pngcrush -d crushed
 
 
 Notes:
-* the -P on the xargs running font-render so you do a few fonts at at once
-  * font-render-codepoint.sh just calls font-render-codepoints.py. The point is to swallow an error code, so that xargs doesn't stop when we crash on an individual font. Which it does on various fonts because rendering this way leaks memory like hell and may crash for large fonts
+* the -P on the xargs assumes you're running on multicore and can do some stuff in parallel
 
-* The montage selects up to six images, randomly for the available ones.
+* font-render-codepoint.sh just calls font-render-codepoints.py. The point is to swallow an error code, so that xargs doesn't stop when we crash on an individual font. Which it does on various fonts because rendering this way leaks memory like hell, and may crash for large fonts
+
+* The montage selects up to six images, randomly from the available ones.
 
 * the images in this repository are purely there as examples of how it will look
 
@@ -68,7 +69,7 @@ On ubuntu this is covered by
 
 * clean up these scripts, they're look like one-time scripts from ten years ago because they are
 
-* there are some images that have a lot of white around them for weird-bounding-box reasons. I think this is now -trim'd away during montage, but check this works as intended.
+* there are some images that have a lot of white around them for weird-bounding-box reasons. I think this is now -trim'd away during montage, but check that that works as intended.
 
 
 ## Notes
