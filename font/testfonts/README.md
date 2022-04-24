@@ -46,11 +46,11 @@ License: Shareware and freeware, I'm assuming it's not an issue
 
 ## Hanazono
 
-HanaMinA
+_HanaMinA_
 * Most of the basics
 * Number of codepoints: 35892
 
-HanaMinB
+_HanaMinB_
 * CJK Unified Ideographs Extensions B through F
 * Number of codepoints: 52945
 
