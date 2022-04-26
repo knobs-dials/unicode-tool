@@ -16,6 +16,8 @@ License: GPL3 (with [Font Exception 2](https://en.wikipedia.org/wiki/GPL_font_ex
 
 ## unifont 
 
+GNU Unifont is a (16-by-16) pixel font in a vector font format. It doesn't look the best, but is great as a fallback for glyphs you don't get from elsewhere.
+
 Number of codepoints: approx 57k
 
 License: "As of Unifont version 13.0.04, the fonts are dual-licensed under the SIL Open Font License (OFL) version 1.1 and the GNU GPL 2+ with the GNU font embedding exception. The SIL OFL is available at OFL-1.1.txt.", quoth https://unifoundry.com/unifont/index.html
