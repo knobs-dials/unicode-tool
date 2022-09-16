@@ -1,7 +1,7 @@
 
 ## Purpose
 
-These scripts support the glyph-example image montages, and "fonts supporting this character include..." feature
+These scripts support the example glyph image montages, and the "fonts supporting this character include..." feature.
 
 To that end:
 * **font-codepoint-coverage** - figures out the range of characters within each font, using fontforge
