@@ -19,7 +19,7 @@ Once that's functional I'll probably move all data to a database, so that it's n
 
 ### helpers_unicode.py
 
-Functions like 'is codepoint assined, is it private use, surrogate, control code, CJK, emoji (TODO)'
+Functions like 'is codepoint assigned, is it private use, surrogate, control code, CJK, emoji (TODO)'
 
 Also contains some data like category names, plane names, 
 
