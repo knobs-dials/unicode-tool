@@ -57,28 +57,28 @@ blocks = [
            # 256 for unused (redundant with '' for name)
            # There should probably also be a value for "no, but it is still used"
            # ...because we alsp explicitly list unused ranges here
-    (0x0000, 0x007F, 'Basic Latin',                 1),
-    (0x0080, 0x00FF, 'Latin-1 Supplement',          1),
-    (0x0100, 0x017F, 'Latin Extended-A',            1),
-    (0x0180, 0x024F, 'Latin Extended-B',            1),
-    (0x0250, 0x02AF, 'IPA Extensions',             32),
-    (0x02B0, 0x02FF, 'Spacing Modifier Letters',   32),
-    (0x0300, 0x036F, 'Combining Diacritical Marks',32),
-    (0x0370, 0x03FF, 'Greek and Coptic',            1),
-    (0x0400, 0x04FF, 'Cyrillic',                    1),
-    (0x0500, 0x052F, 'Cyrillic Supplement',         1),
-    (0x0530, 0x058F, 'Armenian',                    1),
-    (0x0590, 0x05FF, 'Hebrew',                      1),
-    (0x0600, 0x06FF, 'Arabic',                      1),
+    (0x0000, 0x007F, 'Basic Latin',                 1), # https://en.wikipedia.org/wiki/Basic_Latin_(Unicode_block)
+    (0x0080, 0x00FF, 'Latin-1 Supplement',          1), # https://en.wikipedia.org/wiki/Latin-1_Supplement
+    (0x0100, 0x017F, 'Latin Extended-A',            1), # https://en.wikipedia.org/wiki/Latin_Extended-A
+    (0x0180, 0x024F, 'Latin Extended-B',            1), # https://en.wikipedia.org/wiki/Latin_Extended-B
+    (0x0250, 0x02AF, 'IPA Extensions',             32), # https://en.wikipedia.org/wiki/IPA_Extensions
+    (0x02B0, 0x02FF, 'Spacing Modifier Letters',   32), # https://en.wikipedia.org/wiki/Spacing_Modifier_Letters
+    (0x0300, 0x036F, 'Combining Diacritical Marks',32), # https://en.wikipedia.org/wiki/Combining_Diacritical_Marks
+    (0x0370, 0x03FF, 'Greek and Coptic',            1), # https://en.wikipedia.org/wiki/Greek_and_Coptic
+    (0x0400, 0x04FF, 'Cyrillic',                    1), # 
+    (0x0500, 0x052F, 'Cyrillic Supplement',         1), # https://en.wikipedia.org/wiki/Cyrillic_Supplement
+    (0x0530, 0x058F, 'Armenian',                    1), # 
+    (0x0590, 0x05FF, 'Hebrew',                      1), # 
+    (0x0600, 0x06FF, 'Arabic',                      1), # 
     (0x0700, 0x074F, 'Syriac',                      4), # https://en.wikipedia.org/wiki/Syriac_language
-    (0x0750, 0x077F, 'Arabic Supplement',           1), 
+    (0x0750, 0x077F, 'Arabic Supplement',           1), # https://en.wikipedia.org/wiki/Arabic_Supplement
     (0x0780, 0x07BF, 'Thaana',                      1), # https://en.wikipedia.org/wiki/Thaana
     (0x07C0, 0x07FF, 'NKo',                         1), # https://en.wikipedia.org/wiki/N%27Ko_alphabet
     (0x0800, 0x083F, 'Samaritan',                   1), # https://en.wikipedia.org/wiki/Samaritan_alphabet
     (0x0840, 0x085F, 'Mandaic',                     1), # https://en.wikipedia.org/wiki/Mandaic_alphabet
     (0x0860, 0x086f, 'Syriac Supplement',           4), # https://en.wikipedia.org/wiki/Syriac_Supplement  https://en.wikipedia.org/wiki/Suriyani_Malayalam
-    (0x0870, 0x089f, '',                          256), 
-    (0x08a0, 0x08FF, 'Arabic Extended-A',           1),
+    (0x0870, 0x089f, 'Arabic Extended-B',           1), # https://en.wikipedia.org/wiki/Arabic_Extended-B
+    (0x08a0, 0x08FF, 'Arabic Extended-A',           1), # https://en.wikipedia.org/wiki/Arabic_Extended-A
     (0x0900, 0x097F, 'Devanagari',                  1), # https://en.wikipedia.org/wiki/Devanagari
     (0x0980, 0x09FF, 'Bengali',                     1), # https://en.wikipedia.org/wiki/Bengali_alphabet
     (0x0A00, 0x0A7F, 'Gurmukhi',                    1), # https://en.wikipedia.org/wiki/Gurmukh%C4%AB_alphabet
@@ -100,14 +100,14 @@ blocks = [
     (0x13A0, 0x13FF, 'Cherokee',                    1), # https://en.wikipedia.org/wiki/Cherokee_language
     (0x1400, 0x167F, 'Unified Canadian Aboriginal Syllabics', 1), # https://en.wikipedia.org/wiki/Canadian_Aboriginal_syllabics
     (0x1680, 0x169F, 'Ogham',                       4), # https://en.wikipedia.org/wiki/Ogham                  
-    (0x16A0, 0x16FF, 'Runic',                       4), # sort of?
+    (0x16A0, 0x16FF, 'Runic',                       4), # https://en.wikipedia.org/wiki/Runic_(Unicode_block)
     (0x1700, 0x171F, 'Tagalog',                     1), # https://en.wikipedia.org/wiki/Tagalog_language
     (0x1720, 0x173F, 'Hanunoo',                     1), # https://en.wikipedia.org/wiki/Hanun%C3%B3%27o_alphabet
     (0x1740, 0x175F, 'Buhid',                       1), # https://en.wikipedia.org/wiki/Buhid_alphabet              
     (0x1760, 0x177F, 'Tagbanwa',                    1), # https://en.wikipedia.org/wiki/Tagbanwa_alphabet
     (0x1780, 0x17FF, 'Khmer',                       1), # https://en.wikipedia.org/wiki/Khmer_alphabet
     (0x1800, 0x18AF, 'Mongolian',                   1), # https://en.wikipedia.org/wiki/Mongolian_script
-    (0x18b0, 0x18ff, 'Unified Canadian Aboriginal Syllabics Extended', 1),
+    (0x18b0, 0x18ff, 'Unified Canadian Aboriginal Syllabics Extended', 1), # https://en.wikipedia.org/wiki/Unified_Canadian_Aboriginal_Syllabics_Extended
     (0x1900, 0x194F, 'Limbu',                       1), # https://en.wikipedia.org/wiki/Limbu_language
     (0x1950, 0x197F, 'Tai Le',                      1), # https://en.wikipedia.org/wiki/Tai_N%C3%BCa_language
     (0x1980, 0x19DF, 'New Tai Lue',                 1), # https://en.wikipedia.org/wiki/New_Tai_Lue_alphabet
@@ -120,94 +120,94 @@ blocks = [
     (0x1bc0, 0x1bff, 'Batak',                       1), # https://en.wikipedia.org/wiki/Batak_alphabet
     (0x1c00, 0x1c4f, 'Lepcha',                      1), # https://en.wikipedia.org/wiki/Lepcha_alphabet
     (0x1c50, 0x1c7f, 'Ol Chiki',                    1), # https://en.wikipedia.org/wiki/Ol_Chiki_alphabet
-    (0x1c80, 0x1c8f, 'Cyrillic Extended-C',         1),
-    (0x1c90, 0x1cbf, 'Georgian Extended',           1),
-    (0x1cc0, 0x1ccf, 'Sundanese Supplement',        4), 
-    (0x1cd0, 0x1cff, 'Vedic Extensions',            4),
+    (0x1c80, 0x1c8f, 'Cyrillic Extended-C',         1), # https://en.wikipedia.org/wiki/Cyrillic_Extended-C
+    (0x1c90, 0x1cbf, 'Georgian Extended',           1), # https://en.wikipedia.org/wiki/Georgian_Extended
+    (0x1cc0, 0x1ccf, 'Sundanese Supplement',        4), # https://en.wikipedia.org/wiki/Sundanese_Supplement
+    (0x1cd0, 0x1cff, 'Vedic Extensions',            4), # https://en.wikipedia.org/wiki/Vedic_Extensions
     
-    (0x1D00, 0x1D7F, 'Phonetic Extensions',                    32),
-    (0x1D80, 0x1DBF, 'Phonetic Extensions Supplement',         32),
-    (0x1DC0, 0x1DFF, 'Combining Diacritical Marks Supplement', 32),
-    (0x1E00, 0x1EFF, 'Latin Extended Additional',               1),
-    (0x1F00, 0x1FFF, 'Greek Extended',                          1),
-    (0x2000, 0x206F, 'General Punctuation',                    32),
-    (0x2070, 0x209F, 'Superscripts and Subscripts',            32),
-    (0x20A0, 0x20CF, 'Currency Symbols',                       32),
-    (0x20D0, 0x20FF, 'Combining Diacritical Marks for Symbols',32),
-    (0x2100, 0x214F, 'Letterlike Symbols',                     32),
-    (0x2150, 0x218F, 'Number Forms',                           32), # 1|?
-    (0x2190, 0x21FF, 'Arrows',                                 32),
-    (0x2200, 0x22FF, 'Mathematical Operators',                 32),
-    (0x2300, 0x23FF, 'Miscellaneous Technical',                32),
-    (0x2400, 0x243F, 'Control Pictures',                       32),
-    (0x2440, 0x245F, 'Optical Character Recognition',          32),
-    (0x2460, 0x24FF, 'Enclosed Alphanumerics',                 32),
-    (0x2500, 0x257F, 'Box Drawing',                            32),
-    (0x2580, 0x259F, 'Block Elements',                         32),
-    (0x25A0, 0x25FF, 'Geometric Shapes',                       32),
-    (0x2600, 0x26FF, 'Miscellaneous Symbols',                  32),
-    (0x2700, 0x27BF, 'Dingbats',                               32),
-    (0x27C0, 0x27EF, 'Miscellaneous Mathematical Symbols-A',   32),
-    (0x27F0, 0x27FF, 'Supplemental Arrows-A',                  32),
-    (0x2800, 0x28FF, 'Braille Patterns',                       32),
-    (0x2900, 0x297F, 'Supplemental Arrows-B',                  32),
-    (0x2980, 0x29FF, 'Miscellaneous Mathematical Symbols-B',   32),
-    (0x2A00, 0x2AFF, 'Supplemental Mathematical Operators',    32),
-    (0x2B00, 0x2BFF, 'Miscellaneous Symbols and Arrows',       32),
+    (0x1D00, 0x1D7F, 'Phonetic Extensions',                    32), # https://en.wikipedia.org/wiki/Phonetic_Extensions
+    (0x1D80, 0x1DBF, 'Phonetic Extensions Supplement',         32), # https://en.wikipedia.org/wiki/Phonetic_Extensions_Supplement
+    (0x1DC0, 0x1DFF, 'Combining Diacritical Marks Supplement', 32), # https://en.wikipedia.org/wiki/Combining_Diacritical_Marks_Supplement
+    (0x1E00, 0x1EFF, 'Latin Extended Additional',               1), # https://en.wikipedia.org/wiki/Latin_Extended_Additional
+    (0x1F00, 0x1FFF, 'Greek Extended',                          1), # https://en.wikipedia.org/wiki/Greek_Extended
+    (0x2000, 0x206F, 'General Punctuation',                    32), # https://en.wikipedia.org/wiki/General_Punctuation
+    (0x2070, 0x209F, 'Superscripts and Subscripts',            32), # https://en.wikipedia.org/wiki/Superscripts_and_Subscripts
+    (0x20A0, 0x20CF, 'Currency Symbols',                       32), # https://en.wikipedia.org/wiki/Currency_Symbols_(Unicode_block)
+    (0x20D0, 0x20FF, 'Combining Diacritical Marks for Symbols',32), # https://en.wikipedia.org/wiki/Combining_Diacritical_Marks_for_Symbols
+    (0x2100, 0x214F, 'Letterlike Symbols',                     32), # https://en.wikipedia.org/wiki/Letterlike_Symbols
+    (0x2150, 0x218F, 'Number Forms',                            1), # https://en.wikipedia.org/wiki/Number_Forms
+    (0x2190, 0x21FF, 'Arrows',                                 32), # https://en.wikipedia.org/wiki/Arrows_(Unicode_block)
+    (0x2200, 0x22FF, 'Mathematical Operators',                 32), # https://en.wikipedia.org/wiki/Mathematical_Operators_(Unicode_block)
+    (0x2300, 0x23FF, 'Miscellaneous Technical',                32), # https://en.wikipedia.org/wiki/Miscellaneous_Technical
+    (0x2400, 0x243F, 'Control Pictures',                       32), # https://en.wikipedia.org/wiki/Control_Pictures
+    (0x2440, 0x245F, 'Optical Character Recognition',          32), # https://en.wikipedia.org/wiki/Optical_Character_Recognition_(Unicode_block)
+    (0x2460, 0x24FF, 'Enclosed Alphanumerics',                 32), # https://en.wikipedia.org/wiki/Enclosed_Alphanumerics
+    (0x2500, 0x257F, 'Box Drawing',                            32), # https://en.wikipedia.org/wiki/Box_Drawing
+    (0x2580, 0x259F, 'Block Elements',                         32), # https://en.wikipedia.org/wiki/Block_Elements
+    (0x25A0, 0x25FF, 'Geometric Shapes',                       32), # https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block)
+    (0x2600, 0x26FF, 'Miscellaneous Symbols',                  32), # https://en.wikipedia.org/wiki/Miscellaneous_Symbols
+    (0x2700, 0x27BF, 'Dingbats',                               32), # https://en.wikipedia.org/wiki/Dingbats_(Unicode_block)
+    (0x27C0, 0x27EF, 'Miscellaneous Mathematical Symbols-A',   32), # https://en.wikipedia.org/wiki/Miscellaneous_Mathematical_Symbols-A
+    (0x27F0, 0x27FF, 'Supplemental Arrows-A',                  32), # https://en.wikipedia.org/wiki/Supplemental_Arrows-A
+    (0x2800, 0x28FF, 'Braille Patterns',                       32), # https://en.wikipedia.org/wiki/Braille_Patterns
+    (0x2900, 0x297F, 'Supplemental Arrows-B',                  32), # https://en.wikipedia.org/wiki/Supplemental_Arrows-B
+    (0x2980, 0x29FF, 'Miscellaneous Mathematical Symbols-B',   32), # https://en.wikipedia.org/wiki/Miscellaneous_Mathematical_Symbols-B
+    (0x2A00, 0x2AFF, 'Supplemental Mathematical Operators',    32), # https://en.wikipedia.org/wiki/Supplemental_Mathematical_Operators
+    (0x2B00, 0x2BFF, 'Miscellaneous Symbols and Arrows',       32), # https://en.wikipedia.org/wiki/Miscellaneous_Symbols_and_Arrows
     (0x2C00, 0x2C5F, 'Glagolitic',                              4), # https://en.wikipedia.org/wiki/Glagolitic_alphabet
-    (0x2C60, 0x2C7F, 'Latin Extended-C',                        1),
+    (0x2C60, 0x2C7F, 'Latin Extended-C',                        1), # https://en.wikipedia.org/wiki/Latin_Extended-C
     (0x2C80, 0x2CFF, 'Coptic',                                  4), # https://en.wikipedia.org/wiki/Coptic_alphabet
-    (0x2D00, 0x2D2F, 'Georgian Supplement',                     1), 
+    (0x2D00, 0x2D2F, 'Georgian Supplement',                     1), # https://en.wikipedia.org/wiki/Georgian_Supplement
     (0x2D30, 0x2D7F, 'Tifinagh',                                4), # https://en.wikipedia.org/wiki/Tifinagh
-    (0x2D80, 0x2DDF, 'Ethiopic Extended',                       4),
-    (0x2de0, 0x2DFF, 'Cyrillic Extended-A',                     2),
-    (0x2E00, 0x2E7F, 'Supplemental Punctuation',               32),
-    (0x2E80, 0x2EFF, 'CJK Radicals Supplement',                 1),
-    (0x2F00, 0x2FDF, 'Kangxi Radicals',                         1),
-    (0x2fe0, 0x2fef, '',                                      256),     # CHECK
+    (0x2D80, 0x2DDF, 'Ethiopic Extended',                       4), # https://en.wikipedia.org/wiki/Ethiopic_Extended
+    (0x2de0, 0x2DFF, 'Cyrillic Extended-A',                     2), # https://en.wikipedia.org/wiki/Cyrillic_Extended-A
+    (0x2E00, 0x2E7F, 'Supplemental Punctuation',               32), # https://en.wikipedia.org/wiki/Supplemental_Punctuation
+    (0x2E80, 0x2EFF, 'CJK Radicals Supplement',                 1), # https://en.wikipedia.org/wiki/CJK_Radicals_Supplement
+    (0x2F00, 0x2FDF, 'Kangxi Radicals',                         1), # https://en.wikipedia.org/wiki/Kangxi_radicals
+    (0x2fe0, 0x2fef, '',                                      256), # CHECK
     (0x2FF0, 0x2FFF, 'Ideographic Description Characters',     32), # I guess? https://en.wikipedia.org/wiki/Ideographic_Description_Characters_(Unicode_block)
-    (0x3000, 0x303F, 'CJK Symbols and Punctuation',             1),
-    (0x3040, 0x309F, 'Hiragana',                                1),
-    (0x30A0, 0x30FF, 'Katakana',                                1),
+    (0x3000, 0x303F, 'CJK Symbols and Punctuation',             1), # https://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation 
+    (0x3040, 0x309F, 'Hiragana',                                1), # https://en.wikipedia.org/wiki/Hiragana_(Unicode_block)
+    (0x30A0, 0x30FF, 'Katakana',                                1), # https://en.wikipedia.org/wiki/Katakana_(Unicode_block)
     (0x3100, 0x312F, 'Bopomofo',                                1), # https://en.wikipedia.org/wiki/Bopomofo
-    (0x3130, 0x318F, 'Hangul Compatibility Jamo',               2), # I guess
+    (0x3130, 0x318F, 'Hangul Compatibility Jamo',               1), # https://en.wikipedia.org/wiki/Hangul_Compatibility_Jamo
     (0x3190, 0x319F, 'Kanbun',                                  2), # https://en.wikipedia.org/wiki/Kanbun
     (0x31A0, 0x31BF, 'Bopomofo Extended',                       1), # https://en.wikipedia.org/wiki/Bopomofo
-    (0x31C0, 0x31EF, 'CJK Strokes',                             1),
-    (0x31F0, 0x31FF, 'Katakana Phonetic Extensions',            1), # I guess
+    (0x31C0, 0x31EF, 'CJK Strokes',                             1), # https://en.wikipedia.org/wiki/CJK_Strokes_(Unicode_block)
+    (0x31F0, 0x31FF, 'Katakana Phonetic Extensions',            1), # https://en.wikipedia.org/wiki/Katakana_Phonetic_Extensions
     (0x3200, 0x32FF, 'Enclosed CJK Letters and Months',         1), # https://en.wikipedia.org/wiki/Enclosed_CJK_Letters_and_Months
     (0x3300, 0x33FF, 'CJK Compatibility',                       1), # https://en.wikipedia.org/wiki/CJK_Compatibility
-    (0x3400, 0x4DBF, 'CJK Unified Ideographs Extension A',      2),
-    (0x4DC0, 0x4DFF, 'Yijing Hexagram Symbols',                 2),
-    (0x4E00, 0x9FFF, 'CJK Unified Ideographs',                  1),
-    (0xA000, 0xA48F, 'Yi Syllables',                            2),
-    (0xA490, 0xA4CF, 'Yi Radicals',                             2),
+    (0x3400, 0x4DBF, 'CJK Unified Ideographs Extension A',      2), # https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_Extension_A
+    (0x4DC0, 0x4DFF, 'Yijing Hexagram Symbols',                 2), # https://en.wikipedia.org/wiki/Yijing_Hexagram_Symbols
+    (0x4E00, 0x9FFF, 'CJK Unified Ideographs',                  1), # https://en.wikipedia.org/wiki/CJK_Unified_Ideographs_(Unicode_block)
+    (0xA000, 0xA48F, 'Yi Syllables',                            2), # https://en.wikipedia.org/wiki/Yi_Syllables
+    (0xA490, 0xA4CF, 'Yi Radicals',                             2), # https://en.wikipedia.org/wiki/Yi_Radicals
     (0xa4d0, 0xa4ff, 'Lisu',                                    2), # https://en.wikipedia.org/wiki/Lisu_language
     (0xa500, 0xA63F, 'Vai',                                     2), # https://en.wikipedia.org/wiki/Vai_language
-    (0xa640, 0xA69F, 'Cyrillic Extended-B',                     1),
+    (0xa640, 0xA69F, 'Cyrillic Extended-B',                     1), # https://en.wikipedia.org/wiki/Cyrillic_Extended-B
     (0xa6a0, 0xA6FF, 'Bamum',                                   2), # https://en.wikipedia.org/wiki/Bamum_language
-    (0xA700, 0xA71F, 'Modifier Tone Letters',                1|32), # not sure
-    (0xA720, 0xA7FF, 'Latin Extended-D',                        1),
+    (0xA700, 0xA71F, 'Modifier Tone Letters',                1|32), # https://en.wikipedia.org/wiki/Modifier_Tone_Letters
+    (0xA720, 0xA7FF, 'Latin Extended-D',                        1), # https://en.wikipedia.org/wiki/Latin_Extended-D
     (0xA800, 0xA82F, 'Syloti Nagri',                            4), # https://en.wikipedia.org/wiki/Sylheti_Nagari
-    (0xa830, 0xa83f, 'Common Indic Number Forms',               2), # I guess   https://en.wikipedia.org/wiki/Common_Indic_Number_Forms 
+    (0xa830, 0xa83f, 'Common Indic Number Forms',               1), # https://en.wikipedia.org/wiki/Common_Indic_Number_Forms 
     (0xA840, 0xA87F, 'Phags-pa',                                4), # https://en.wikipedia.org/wiki/%27Phags-pa_script 
     (0xa880, 0xa8df, 'Saurashtra',                              2), # https://en.wikipedia.org/wiki/Saurashtra_alphabet
-    (0xa8e0, 0xa8ff, 'Devanagari Extended',                     1), # maybe 2?
+    (0xa8e0, 0xa8ff, 'Devanagari Extended',                     2), # https://en.wikipedia.org/wiki/Devanagari_Extended
     (0xa900, 0xa92f, 'Kayah Li',                                2), # https://en.wikipedia.org/wiki/Kayah_Li_alphabet
-    (0xa930, 0xa95f, 'Rejang',                                  2),
+    (0xa930, 0xa95f, 'Rejang',                                  2), # https://en.wikipedia.org/wiki/Rejang_(Unicode_block)
     (0xa960, 0xa97f, 'Hangul Jamo Extended-A',                  2), # https://en.wikipedia.org/wiki/Hangul_Jamo_Extended-A
-    (0xa980, 0xa9df, 'Javanese',                                1), # ? https://en.wikipedia.org/wiki/Javanese_language
-    (0xa9e0, 0xa9ff, 'Myanmar Extended-B',                      2),
+    (0xa980, 0xa9df, 'Javanese',                                1), # https://en.wikipedia.org/wiki/Javanese_language
+    (0xa9e0, 0xa9ff, 'Myanmar Extended-B',                      2), # https://en.wikipedia.org/wiki/Myanmar_Extended-B
     (0xaa00, 0xaa5f, 'Cham',                                    2), # https://en.wikipedia.org/wiki/Cham_languages 
-    (0xaa60, 0xaa7f, 'Myanmar Extended-A',                      2),
-    (0xaa80, 0xaadf, 'Tai Viet',                                2), # or 1?  https://en.wikipedia.org/wiki/Tai_Viet
-    (0xaae0, 0xaaff, 'Meetei Mayek Extensions',                 4),
-    (0xab00, 0xab2f, 'Ethiopic Extended-A',                     4),
-    (0xab30, 0xab6f, 'Latin Extended-E',                        1),
-    (0xab70, 0xabbf, 'Cherokee Supplement',                     2),
-    (0xabc0, 0xabff, 'Meetei Mayek',                            4),
-    (0xAC00, 0xD7AF, 'Hangul Syllables',                        1),
-    (0xd7b0, 0xd7ff, 'Hangul Jamo Extended-B',                  2),
+    (0xaa60, 0xaa7f, 'Myanmar Extended-A',                      2), # https://en.wikipedia.org/wiki/Myanmar_Extended-A
+    (0xaa80, 0xaadf, 'Tai Viet',                                1), # https://en.wikipedia.org/wiki/Tai_Viet
+    (0xaae0, 0xaaff, 'Meetei Mayek Extensions',                 4), # https://en.wikipedia.org/wiki/Meetei_Mayek_Extensions
+    (0xab00, 0xab2f, 'Ethiopic Extended-A',                     4), # https://en.wikipedia.org/wiki/Ethiopic_Extended-A
+    (0xab30, 0xab6f, 'Latin Extended-E',                        1), # https://en.wikipedia.org/wiki/Latin_Extended-E
+    (0xab70, 0xabbf, 'Cherokee Supplement',                     2), # https://en.wikipedia.org/wiki/Cherokee_Supplement
+    (0xabc0, 0xabff, 'Meetei Mayek',                            4), # https://en.wikipedia.org/wiki/Meitei_script
+    (0xAC00, 0xD7AF, 'Hangul Syllables',                        1), # https://en.wikipedia.org/wiki/Hangul_Syllables
+    (0xd7b0, 0xd7ff, 'Hangul Jamo Extended-B',                  2), # https://en.wikipedia.org/wiki/Hangul_Jamo_Extended-B
 
     (0xD800, 0xDB7F, 'High Surrogates',                        64),
     (0xDB80, 0xDBFF, 'High Private Use Surrogates',     128|64|16),
@@ -246,9 +246,11 @@ blocks = [
     (0x104b0, 0x104ff, 'Osage',                                 1), # https://en.wikipedia.org/wiki/Osage_(Unicode_block)
     (0x10500, 0x1052f, 'Elbasan',                               4), # https://en.wikipedia.org/wiki/Elbasan_alphabet
     (0x10530, 0x1056F, 'Caucasian Albanian',                    4), # https://en.wikipedia.org/wiki/Caucasian_Albanian_alphabet
-    (0x10570, 0x105ff, '',                                    256),
+    (0x10570, 0x105bf, 'Vithkuqi',                              4), # https://en.wikipedia.org/wiki/Vithkuqi_alphabet
+    (0x105c0, 0x105ff, 'Todhri',                                4), # https://en.wikipedia.org/wiki/Todhri_alphabet
     (0x10600, 0x1077F, 'Linear A',                              4), # https://en.wikipedia.org/wiki/Linear_A_(Unicode_block)
-    (0x10780, 0x107fF, '',                                    256),
+    (0x10780, 0x107bF, 'Latin Extended-F',                     32),
+    (0x107c0, 0x107fF, '',                                    256),
     (0x10800, 0x1083F, 'Cypriot Syllabary',                     4), # https://en.wikipedia.org/wiki/Cypriot_syllabary
     (0x10840, 0x1085F, 'Imperial Aramaic',                      4), # https://en.wikipedia.org/wiki/Aramaic_alphabet
     (0x10860, 0x1087F, 'Palmyrene',                             4), # https://en.wikipedia.org/wiki/Palmyrene_dialect
@@ -272,14 +274,17 @@ blocks = [
     (0x10bb0, 0x10bff, '',                                    256),
     (0x10C00, 0x10C4F, 'Old Turkic',                            4), # https://en.wikipedia.org/wiki/Old_Turkic_alphabet
     (0x10C50, 0x10c7f, '',                                    256),  
-    (0x10C80, 0x10cff, 'Old Hungarian',                         4),
+    (0x10C80, 0x10cff, 'Old Hungarian',                         4), # https://en.wikipedia.org/wiki/Old_Hungarian_(Unicode_block)
     (0x10d00, 0x10d3f, 'Hanifi Rohingya',                       2), # https://en.wikipedia.org/wiki/Hanifi_Rohingya_script
-    (0x10d40, 0x10E5F, '',                                    256),
+    (0x10d40, 0x10d8f, 'Garay',                                 4), # https://en.wikipedia.org/wiki/Garay_alphabet
+    (0x10d90, 0x10E5F, '',                                    256),
     (0x10E60, 0x10E7F, 'Rumi Numeral Symbols',                  4), # https://en.wikipedia.org/wiki/Rumi_Numeral_Symbols
-    (0x10E80, 0x10eff, '',                                    256),
+    (0x10E80, 0x10ebf, 'Yezidi',                                4), # https://en.wikipedia.org/wiki/Kurdish_alphabets#Yezidi
+    (0x10Ec0, 0x10eff, 'Arabic Extended-C',                     2), # https://en.wikipedia.org/wiki/Arabic_Extended-C
     (0x10f00, 0x10f2f, 'Old Sogdian',                           4), # https://en.wikipedia.org/wiki/Old_Sogdian_(Unicode_block)
-    (0x10f30, 0x10f6f, 'Sogdian',                               4),
-    (0x10f70, 0x10fdf, '',                                    256),
+    (0x10f30, 0x10f6f, 'Sogdian',                               4), # https://en.wikipedia.org/wiki/Sogdian_(Unicode_block)
+    (0x10f70, 0x10faf, 'Old Uyghur',                            4),
+    (0x10fb0, 0x10fdf, 'Chorasmian',                            4),
     (0x10fe0, 0x10fff, 'Elymaic',                               4), # https://en.wikipedia.org/wiki/Elymaic
     (0x11000, 0x1107F, 'Brahmi',                                4), # https://en.wikipedia.org/wiki/Brahmi_script
     (0x11080, 0x110CF, 'Kaithi',                                4), # https://en.wikipedia.org/wiki/Kaithi
@@ -293,27 +298,30 @@ blocks = [
     (0x11280, 0x112AF, 'Multani',                               4), # https://en.wikipedia.org/wiki/Multani_script
     (0x112B0, 0x112FF, 'Khudawadi',                             2), # https://en.wikipedia.org/wiki/Khudabadi_script
     (0x11300, 0x1137F, 'Grantha',                               4), # https://en.wikipedia.org/wiki/Grantha_alphabet
-    (0x11380, 0x113ff, '',                                    256),
-    (0x11400, 0x1147F, 'Newa',                                  2),
+    (0x11380, 0x113ff, 'Tulu-Tigalari',                         4), # https://en.wikipedia.org/wiki/Tigalari_script
+    (0x11400, 0x1147F, 'Newa',                                  2), # https://en.wikipedia.org/wiki/Newar_language
     (0x11480, 0x114DF, 'Tirhuta',                               2), # https://en.wikipedia.org/wiki/Tirhuta
     (0x114E0, 0x1157F, '',                                    256),
     (0x11580, 0x115FF, 'Siddham',                               4), # https://en.wikipedia.org/wiki/Siddha%E1%B9%83_alphabet
     (0x11600, 0x1165F, 'Modi',                                  2), # https://en.wikipedia.org/wiki/Modi_alphabet    
     (0x11660, 0x1167f, 'Mongolian Supplement',                  2),
     (0x11680, 0x116CF, 'Takri',                                 2), # https://en.wikipedia.org/wiki/Takri_alphabet
-    (0x116D0, 0x116fF, '',                                    256),
-    (0x11700, 0x1173f, 'Ahom',                                  4),
-    (0x11740, 0x117FF, '',                                    256),    
+    (0x116D0, 0x116fF, 'Myanmar Extended-C',                    2), # https://en.wikipedia.org/wiki/Myanmar_Extended-C
+    (0x11700, 0x1174f, 'Ahom',                                  4), # https://en.wikipedia.org/wiki/Ahom_(Unicode_block)
+    (0x11750, 0x117FF, '',                                    256),    
     (0x11800, 0x1184F, 'Dogra',                                 2), # https://en.wikipedia.org/wiki/Dogras
     (0x11850, 0x1189F, '',                                    256),
     (0x118A0, 0x118FF, 'Warang Citi',                           2), # https://en.wikipedia.org/wiki/Varang_Kshiti
-    (0x11900, 0x1199f, '',                                    256),
+    (0x11900, 0x1195f, 'Dives Akuru',                           4), # https://en.wikipedia.org/wiki/Dhives_Akuru
+    (0x11960, 0x1199f, '',                                    256),
     (0x119A0, 0x119FF, 'Nandinagari',                           4), # https://en.wikipedia.org/wiki/Nandinagari
     (0x11a00, 0x11A4F, 'Zanabazar Square',                      4), # https://en.wikipedia.org/wiki/Zanabazar_Square_(Unicode_block)
     (0x11a50, 0x11AaF, 'Soyombo',                               4), # https://en.wikipedia.org/wiki/Soyombo_(Unicode_block)
-    (0x11ab0, 0x11ABF, '',                                    256),
+    (0x11ab0, 0x11ABF, 'Unified Canadian Aboriginal Syllabics Extended-A', 2),
     (0x11AC0, 0x11AFF, 'Pau Cin Hau',                           2), # https://en.wikipedia.org/wiki/Pau_Cin_Hau
-    (0x11B00, 0x11bff, '',                                    256),
+    (0x11B00, 0x11b5f, 'Devanagari Extended-A',                 2), # https://en.wikipedia.org/wiki/Devanagari_Extended-A
+    (0x11B60, 0x11bbf, '',                                    256), 
+    (0x11Bc0, 0x11bff, 'Sunuwar',                               2), # https://en.wikipedia.org/wiki/Sunuwar_people 
     (0x11c00, 0x11c6f, 'Bhaiksuki',                             4), # https://en.wikipedia.org/wiki/Bhaiksuki_(Unicode_block)
     (0x11c70, 0x11cbf, 'Marchen',                               2), # https://en.wikipedia.org/wiki/Marchen_(Unicode_block)
     (0x11cc0, 0x11cff, '',                                    256),
@@ -321,23 +329,30 @@ blocks = [
     (0x11d60, 0x11daf, 'Gunjala Gondi',                         2), # https://en.wikipedia.org/wiki/Gunjala_Gondi_script
     (0x11db0, 0x11EDF, '',                                    256), 
     (0x11ee0, 0x11eff, 'Makasar',                               4), # https://en.wikipedia.org/wiki/Makasar_script
-    (0x11f00, 0x11FBF, '',                                    256),
+    (0x11f00, 0x11F5F, 'Kawi',                                  4), # https://en.wikipedia.org/wiki/Old_Javanese
+    (0x11f60, 0x11Faf, '',                                    256),
+    (0x11fb0, 0x11FBF, 'Lisu Supplement',                       2), # https://en.wikipedia.org/wiki/Lisu_Supplement
     (0x11fc0, 0x11fff, 'Tamil Supplement',                      1),
     (0x12000, 0x123FF, 'Cuneiform',                             4), # https://en.wikipedia.org/wiki/Cuneiform
     (0x12400, 0x1247F, 'Cuneiform Numbers and Punctuation',     4), # https://en.wikipedia.org/wiki/Cuneiform_Numbers_and_Punctuation
     (0x12480, 0x1254f, 'Early Dynastic Cuneiform',              4),
-    (0x12550, 0x12FFf, '',                                    256),
+    (0x12550, 0x12f8f, '',                                    256),
+    (0x12f90, 0x12FFf, 'Cypro-Minoan',                          4),
     (0x13000, 0x1342f, 'Egyptian Hieroglyphs',                  4), # https://en.wikipedia.org/wiki/Egyptian_hieroglyphs
-    (0x13430, 0x1343f, 'Egyptian Hieroglyph Format Controls',   4),
-    (0x13440, 0x143ff, '',                                    256),
+    (0x13430, 0x1345f, 'Egyptian Hieroglyph Format Controls',   4),
+    (0x13460, 0x143ff, 'Egyptian Hieroglyphs Extended-A',       4),
     (0x14400, 0x1467f, 'Anatolian Hieroglyphs',                 4),
-    (0x14680, 0x167FF, '',                                    256),
+    (0x14680, 0x160ff, '',                                    256),
+    (0x16100, 0x1613f, 'Gurung Khema',                          2), # https://en.wikipedia.org/wiki/Khema_script
+    (0x16140, 0x167FF, '',                                    256),
     (0x16800, 0x16a3f, 'Bamum Supplement',                      2), # https://en.wikipedia.org/wiki/Bamum_script
     (0x16a40, 0x16a6f, 'Mro',                                   1), # https://en.wikipedia.org/wiki/Mro_(Unicode_block)
-    (0x16A70, 0x16ACF, '',                                    256),
+    (0x16A70, 0x16ACF, 'Tangsa',                                2),
     (0x16AD0, 0x16AFF, 'Bassa Vah',                             4), # https://en.wikipedia.org/wiki/Bassa_alphabet
     (0x16B00, 0x16B8F, 'Pahawh Hmong',                          2), # https://en.wikipedia.org/wiki/Pahawh_Hmong
-    (0x16B90, 0x16E3f, '',                                    256),
+    (0x16B90, 0x16d3f, '',                                    256),
+    (0x16d40, 0x16d7f, 'Kirat Rai',                             2), # https://en.wikipedia.org/wiki/Kirat_Rai_(Unicode_block)
+    (0x16d80, 0x16E3f, '',                                    256),
     (0x16E40, 0x16e9f, 'Medefaidrin',                           2), # https://en.wikipedia.org/wiki/Medefaidrin
     (0x16EA0, 0x16EFF, '',                                    256),
     (0x16F00, 0x16F9F, 'Miao',                                  2), # https://en.wikipedia.org/wiki/Pollard_script
@@ -345,7 +360,10 @@ blocks = [
     (0x16FE0, 0x16fff, 'Ideographic Symbols and Punctuation',   1),
     (0x17000, 0x187ff, 'Tangut',                                4),
     (0x18800, 0x18aff, 'Tangut Components',                     4),
-    (0x18b00, 0x1afff, '',                                    256),
+    (0x18b00, 0x18cff, 'Khitan Small Script',                   4),
+    (0x18d00, 0x18d7f, 'Tangut Supplement',                     2),
+    (0x18d80, 0x1afef, '',                                    256),
+    (0x1aff0, 0x1afff, 'Kana Extended-B',                       2),
     (0x1B000, 0x1b0ff, 'Kana Supplement',                       2),
     (0x1B100, 0x1b12f, 'Kana Extended-A',                       2),
     (0x1B130, 0x1b16f, 'Small Kana Extension',                  1),
@@ -353,31 +371,44 @@ blocks = [
     (0x1B300, 0x1bbff, '',                                    256),
     (0x1BC00, 0x1bc9f, 'Duployan',                              2), # https://en.wikipedia.org/wiki/Duployan_shorthand
     (0x1BCA0, 0x1bcaf, 'Shorthand Format Controls',            64), # I think.
-    (0x1BCB0, 0x1cfff, '',                                    256),
+    (0x1BCB0, 0x1cbff, '',                                    256),
+    (0x1cc00, 0x1cebf, 'Symbols for Legacy Computing Supplement',32), # https://en.wikipedia.org/wiki/Symbols_for_Legacy_Computing_Supplement
+    (0x1cec0, 0x1ceff, '',                                    256),
+    (0x1cf00, 0x1cfcf, 'Znamenny Musical Notation',            32),
+    (0x1cfd0, 0x1cfff, '',                                    256),
     (0x1D000, 0x1D0FF, 'Byzantine Musical Symbols',             4), # https://en.wikipedia.org/wiki/Byzantine_Musical_Symbols
     (0x1D100, 0x1D1FF, 'Musical Symbols',                      32), # https://en.wikipedia.org/wiki/Musical_Symbols_(Unicode_block)
     (0x1D200, 0x1D24F, 'Ancient Greek Musical Notation',        4), # https://en.wikipedia.org/wiki/Ancient_Greek_Musical_Notation
-    (0x1d250, 0x1D2DF, '',                                    256),
+    (0x1d250, 0x1D2bf, '',                                    256),
+    (0x1d2c0, 0x1D2DF, 'Kaktovik Numerals',                     2), # https://en.wikipedia.org/wiki/Kaktovik_numerals
     (0x1d2e0, 0x1d2ff, 'Mayan Numerals',                        4),
     (0x1D300, 0x1D35F, 'Tai Xuan Jing Symbols',                 4), # https://en.wikipedia.org/wiki/Taixuanjing 
     (0x1D360, 0x1D37F, 'Counting Rod Numerals',                 4), # https://en.wikipedia.org/wiki/Counting_rods
-    (0x1d380, 0x1d3ff, '',                                    256),
-    (0x1D400, 0x1D7FF, 'Mathematical Alphanumeric Symbols',    32),
-    (0x1d800, 0x1daaf, 'Sutton SignWriting',                    1),
-    (0x1dab0, 0x1DFFF, '',                                    256),
-    (0x1e000, 0x1e02f, 'Glagolitic Supplement',                 4),
-    (0x1e030, 0x1E0FF, '',                                    256),
-    (0x1e100, 0x1E14f, 'Nyiakeng Puachue Hmong',                2),
-    (0x1E150, 0x1E2BF, '',                                    256),    
-    (0x1e2c0, 0x1E2ff, 'Wancho',                                2),
-    (0x1E300, 0x1E7ff, '',                                    256),    
-    (0x1e800, 0x1E8DF, 'Mende Kikakui',                         1),
+    (0x1d380, 0x1d3ff, '',                                    256), 
+    (0x1D400, 0x1D7FF, 'Mathematical Alphanumeric Symbols',    32), 
+    (0x1d800, 0x1daaf, 'Sutton SignWriting',                    1), 
+    (0x1dab0, 0x1Deff, '',                                    256), 
+    (0x1df00, 0x1DFFF, 'Latin Extended-G',                     32), # https://en.wikipedia.org/wiki/Latin_Extended-G
+    (0x1e000, 0x1e02f, 'Glagolitic Supplement',                 4), # https://en.wikipedia.org/wiki/Glagolitic_Supplement
+    (0x1e030, 0x1E08f, 'Cyrillic Extended-D',                  32), # https://en.wikipedia.org/wiki/Cyrillic_Extended-D
+    (0x1e090, 0x1E0FF, '',                                    256),
+    (0x1e100, 0x1E14f, 'Nyiakeng Puachue Hmong',                2), # https://en.wikipedia.org/wiki/Nyiakeng_Puachue_Hmong
+    (0x1E150, 0x1E28F, '',                                    256),    
+    (0x1E290, 0x1E2BF, 'Toto',                                256), # https://en.wikipedia.org/wiki/Toto_(Unicode_block)   
+    (0x1e2c0, 0x1E2ff, 'Wancho',                                2), # https://en.wikipedia.org/wiki/Wancho_(Unicode_block)
+    (0x1E300, 0x1E4cf, '',                                    256),    
+    (0x1E4d0, 0x1E4ff, 'Nag Mundari',                           2),    
+    (0x1E500, 0x1E5cf, '',                                    256),    
+    (0x1E5d0, 0x1E5ff, 'Ol Onal',                               2), # https://en.wikipedia.org/wiki/Ol_Onal
+    (0x1E600, 0x1E7df, '',                                    256),    
+    (0x1E7e0, 0x1E7ff, 'Ethiopic Extended-B',                   2), # https://en.wikipedia.org/wiki/Ethiopic_Extended-B    
+    (0x1e800, 0x1E8DF, 'Mende Kikakui',                         1), # https://en.wikipedia.org/wiki/Mende_Kikakui_script
     (0x1e8e0, 0x1e8ff, '',                                    256),
     (0x1e900, 0x1e95f, 'Adlam',                                 1), # https://en.wikipedia.org/wiki/Adlam_(Unicode_block)
     (0x1e960, 0x1EC6F, '',                                    256),
-    (0x1ec70, 0x1Ecbf, 'Indic Siyaq Numbers',                   4),
+    (0x1ec70, 0x1Ecbf, 'Indic Siyaq Numbers',                   4), # https://en.wikipedia.org/wiki/Indic_Siyaq_Numbers
     (0x1ECC0, 0x1ECFF, '',                                    256),
-    (0x1ed00, 0x1ed4f, 'Ottoman Siyaq Numbers',                 4),
+    (0x1ed00, 0x1ed4f, 'Ottoman Siyaq Numbers',                 4), # https://en.wikipedia.org/wiki/Ottoman_Siyaq_Numbers
     (0x1ED50, 0x1EDFF, '',                                    256),
     (0x1ee00, 0x1eeff, 'Arabic Mathematical Alphabetic Symbols',2), # https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols
     (0x1ef00, 0x1EFFF, '',                                    256),
@@ -396,7 +427,8 @@ blocks = [
     (0x1f900, 0x1f9ff, 'Supplemental Symbols and Pictographs', 32),
     (0x1fa00, 0x1fa6f, 'Chess Symbols',                        32),
     (0x1FA70, 0x1faff, 'Symbols and Pictographs Extended-A',   32),
-    (0x1FB00, 0x1ffff, '',                                    256),
+    (0x1FB00, 0x1fbff, 'Symbols for Legacy Computing',         32),
+    (0x1Fc00, 0x1ffff, '',                                    256),
     
     # https://en.wikipedia.org/wiki/CJK_Unified_Ideographs
     (0x20000, 0x2A6DF, 'CJK Unified Ideographs Extension B',      2),
@@ -405,9 +437,11 @@ blocks = [
     (0x2B740, 0x2B81f, 'CJK Unified Ideographs Extension D',      2), 
     (0x2B820, 0x2CEAF, 'CJK Unified Ideographs Extension E',      2), 
     (0x2CEB0, 0x2EBEF, 'CJK Unified Ideographs Extension F',      2), 
-    (0x2EBF0, 0x2f7ff, '',                                      256),
+    (0x2EBF0, 0x2ee5f, 'CJK Unified Ideographs Extension I',      2),
+    (0x2Ee60, 0x2f7ff, '',                                      256),
     (0x2F800, 0x2FA1F, 'CJK Compatibility Ideographs Supplement', 1),
     (0x2fa20, 0x2ffff, '',                                      256),
+
     
     
     # As of this this writing, this seems to be planned, not current
@@ -421,7 +455,8 @@ blocks = [
     # unallocated planes
 
     (0x30000,0x3134F, 'CJK Unified Ideographs Extension G',       4),
-    (0x31350,0x3ffff, '',                                       256),
+    (0x31350,0x323af, 'CJK Unified Ideographs Extension H',       4),
+    (0x323b0,0x3ffff, '',                                       256),
     (0x40000,0x4ffff, 'plane 4 (not allocated)',                256),
     (0x50000,0x5ffff, 'plane 5 (not allocated)',                256),
     (0x60000,0x6ffff, 'plane 6 (not allocated)',                256),
