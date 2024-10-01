@@ -51,10 +51,13 @@ for fontpath in sys.argv[1:]:
     toprint = []
     
     for st, en in codepoint_ranges:
-        toprint.append( 'U+%X..%X'%(st, en) )
+        if st == en:
+            toprint.append( 'U+%X'%(st,) )
+        else:
+            toprint.append( 'U+%X-U+%X'%(st, en) )
         count += (en-st+1)
     print( "Number of codepoints: %d"%count) 
-    print( ' '.join(toprint) )
+    print( ', '.join(toprint) )
 
     # TODO: put into database
 
